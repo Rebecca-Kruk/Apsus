@@ -27,7 +27,7 @@ export class EmailPreview extends React.Component {
             </div>
             <button onClick={() => this.props.onRemoveEmail(email.id)}>Remove</button>
             <button>Edit</button>
-            {isSelected && <EmailDetails email={email} logggedinUser={logggedinUser} />}
+            {isSelected && <EmailDetails email={email} logggedinUser={logggedinUser} onRemoveEmail={this.props.onRemoveEmail}/>}
         </article>
     }
 }

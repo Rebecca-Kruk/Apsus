@@ -1,6 +1,6 @@
 import { utilService } from "../../../services/util.service.js"
 
-export function EmailDetails({ email, logggedinUser }) {
+export function EmailDetails({ email, logggedinUser, onRemoveEmail}) {
 
     // console.log('email from Email Setails', email)
     // console.log('logggedinUser from Email Setails', logggedinUser)
@@ -12,7 +12,7 @@ export function EmailDetails({ email, logggedinUser }) {
         <span>to:{email.to}</span><br />
         <hr />
         <span>{email.body}</span>
-        <button>Remove</button>
+        <button onClick={() => onRemoveEmail(email.id)}>Remove</button>
         <button>Edit</button>
     </section>
 }
