@@ -1,3 +1,11 @@
 .mail-preview{
     background-color: brown;
 }
+
+.mail-preview-container{
+    background-color: coral;
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+    flex: 1;
+}

@@ -10,19 +10,23 @@ export class EmailPreview extends React.Component {
     }
 
     onSelectToggle = () => {
-        this.setState({isSelected: !this.state.isSelected})
+        this.setState({ isSelected: !this.state.isSelected })
     }
 
     render() {
         const { email, logggedinUser, isSelected } = this.state
-        const {onSelectToggle} = this
+        const { onSelectToggle } = this
         // console.log('Email from emailPreview', email)
         // console.log('User from emailPreview', logggedinUser)
 
-        return <article onClick={onSelectToggle}className="mail-preview">
-            <span>{logggedinUser.fullname}</span><br />
-            <span>{email.subject}</span><br />
-            <span>{utilService.createdAt(email.sentAt)}</span><br />
+        return <article className="mail-preview">
+            <div className="mail-preview-container" onClick={onSelectToggle}>
+                <span>{logggedinUser.fullname}</span><br />
+                <span>{email.subject}</span><br />
+                <span>{utilService.createdAt(email.sentAt)}</span><br />
+            </div>
+            <button onClick={() => this.props.onRemoveEmail(email.id)}>Remove</button>
+            <button>Edit</button>
             {isSelected && <EmailDetails email={email} logggedinUser={logggedinUser} />}
         </article>
     }

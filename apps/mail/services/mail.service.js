@@ -1,15 +1,26 @@
+import { storageService } from '../../../services/storage.service.js'
+
 export const emailService = {
     getMail,
     getCriteria,
     query,
     getLoggedinUser,
+    remove,
 }
 
 const KEY = 'emailsDB'
 
-function query(){
+function query(filterBy) {
     let emails = storageService.loadFromStorage(KEY) || gMails
-    return Promice.resolve(emails)
+    storageService.saveToStorage(KEY, emails)
+    return Promise.resolve(emails)
+}
+
+function remove(emailId) {
+    let emails = storageService.loadFromStorage(KEY) || gMails
+    emails = emails.filter(email => email.id !== emailId)
+    storageService.saveToStorage(KEY, emails)
+    return Promise.resolve()
 }
 
 
@@ -36,15 +47,15 @@ const criteria = {
 }
 
 
-function getMail(){
+function getMail() {
     return gMails
 }
 
-function getCriteria(){
+function getCriteria() {
     return criteria
 }
 
-function getLoggedinUser(){
+function getLoggedinUser() {
     return loggedinUser
 }
 
@@ -57,7 +68,7 @@ let gMails = [
         isRead: false,
         sentAt: 1551133930700,
         to: 'momo@momo.com'
-    }, 
+    },
     {
         id: 'e102',
         subject: 'Don\'t Miss you!',
@@ -65,7 +76,7 @@ let gMails = [
         isRead: false,
         sentAt: 1551133930400,
         to: 'bobo@momo.com'
-    },{
+    }, {
         id: 'e103',
         subject: 'Love you!',
         body: 'No need to catch up',

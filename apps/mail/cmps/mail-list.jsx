@@ -5,20 +5,18 @@ export class MailList extends React.Component {
 
     state = {
         logggedinUser: emailService.getLoggedinUser() || {},
-        emails: this.props.emails || [],
     }
 
     render() {
-        const { emails, logggedinUser } = this.state
-        console.log('emails from  MailList', emails);
-        console.log('user from  MailList', logggedinUser)
+        const {  logggedinUser } = this.state
+        
 
         return <section className="mail-list">
             <ul>
                 {
-                    emails.map(email =>
+                    this.props.emails.map(email =>
                         <li key={email.id}>
-                            <EmailPreview email={email} logggedinUser={logggedinUser} />
+                            <EmailPreview email={email} logggedinUser={logggedinUser} onRemoveEmail={this.props.onRemoveEmail}/>
                         </li>
                     )
                 }
