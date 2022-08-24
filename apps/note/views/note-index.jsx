@@ -8,5 +8,7 @@
 // }
 
 export function NoteIndex() {
-    return 
+    return <section className="note-index">
+        <
+    </section>
 }
