@@ -1,7 +1,8 @@
 import { storageService } from "./storage.service.js"
 
 export const noteService = {
-    query
+    query,
+    getNoteById,
 }
 
 const STORAGE_KEY = 'notesDB'
@@ -58,6 +59,16 @@ function query() {
     // }
 
     return Promise.resolve(notes)
+}
+
+function getNoteById(noteId) {
+    if (!noteId) return Promise.resolve(null)
+    const note = gNotes.find(note => noteId === note.id)
+    return Promise.resolve(note)
+}
+
+function removeNote(noteId) {
+
 }
 
 function _loadFromStorage() {

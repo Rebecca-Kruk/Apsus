@@ -17,11 +17,13 @@ export class NoteApp extends React.Component {
     }
 
     render() {
-        console.log('notes:', this.state.notes);
         return <section className="note-app">
-            Note App
             <NoteHeader />
             <NoteList notes={this.state.notes} />
+
+            {/* <Router>
+                <Route path="/note/details" component={NoteDetails} />
+            </Router> */}
         </section>
     }
 }
