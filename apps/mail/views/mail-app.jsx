@@ -9,7 +9,7 @@ export class MailApp extends React.Component {
     state = {
         emails: emailService.getMail(),
         filterBy: null,
-        isFilter: false
+        isFilter: false, 
     }
 
     componentsDidMount() {

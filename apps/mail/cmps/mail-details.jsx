@@ -1,4 +1,16 @@
-export function EmailDetails(){
+import { utilService } from "../../../services/util.service.js"
 
-    return <h1>ok</h1>
+export function EmailDetails({email, logggedinUser}){
+
+    // console.log('email from Email Setails', email)
+    // console.log('logggedinUser from Email Setails', logggedinUser)
+    return <section className="mail-details">
+        <span>{email.subject}</span><br />
+        <hr />
+        <span>{logggedinUser.fullname}</span><br />
+        <span>from:{logggedinUser.email}</span><br />
+        <span>to:{email.to}</span><br />
+        <hr />
+        <span>{email.body}</span>
+    </section>
 }

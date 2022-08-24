@@ -10,19 +10,18 @@ export class MailList extends React.Component {
 
     render() {
         const { emails, logggedinUser } = this.state
-        // console.log('emails from  MailList', emails);
-        // console.log('user from  MailList', logggedinUser)
+        console.log('emails from  MailList', emails);
+        console.log('user from  MailList', logggedinUser)
 
         return <section className="mail-list">
             <ul>
-                <li>
-                    <EmailPreview email={emails[0]} logggedinUser={logggedinUser} />
-                </li>
-                <li>Mail 2</li>
-                <li>Mail 3</li>
-                <li>Mail 4</li>
-                <li>Mail 5</li>
-                <li>Mail 6</li>
+                {
+                    emails.map(email =>
+                        <li key={email.id}>
+                            <EmailPreview email={email} logggedinUser={logggedinUser} />
+                        </li>
+                    )
+                }
             </ul>
         </section>
     }
