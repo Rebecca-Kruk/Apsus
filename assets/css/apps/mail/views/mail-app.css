@@ -1,3 +1,14 @@
 /* Cmps */
 
 @import '../cmps/mail-list.css';
+@import '../cmps/mail-options.css';
+
+.mail-container{
+    display: flex;
+    border: 1px black solid;
+}
+
+.mail-header{
+    padding: 10px;
+    background-color: blueviolet;
+}

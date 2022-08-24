@@ -1,10 +1,17 @@
+import { MailList } from "../cmps/mail-list.jsx";
+import { MailOptions } from "../cmps/mail-options.jsx";
+import { MailHeader } from "../cmps/mail-header.jsx";
 
-export class MailIndex extends React.Component {
-    render() {
+export  function MailIndex()  {
+
         return (
-            <div>mail app
-                <h1>OKKKK</h1>
+            <div className="mail-app-container">
+                <MailHeader/>
+                <main className="mail-container">
+                    <MailOptions />
+                    <MailList />
+                </main>
             </div>
         )
-    }
+    
 }

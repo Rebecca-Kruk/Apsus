@@ -4,4 +4,16 @@
 
 /* Cmps */
 
-@import './cmps/mail-list.css'
+@import './cmps/mail-list.css';
+
+.mail-app-container {
+    display: flex;
+    flex-direction: column;
+    background-color: lightcyan;
+    border: 1px black solid;
+    padding: 10px;
+}
+
+.border{
+    border-bottom:  1px solid grey;
+}
