@@ -9,6 +9,6 @@
 
 export function NoteIndex() {
     return <section className="note-index">
-    
+
     </section>
 }
