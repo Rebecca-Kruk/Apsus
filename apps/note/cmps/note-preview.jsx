@@ -1,3 +1,4 @@
+import { noteService } from "../services/note.service.js"
 import { NoteDetails } from "./note-details.jsx"
 
 const { Link } = ReactRouterDOM
@@ -18,10 +19,6 @@ export class NotePreview extends React.Component {
     
     addNoteImg = () => {
         
-    }
-    
-    removeNote = () => {
-        console.log('hii:', this.state.note.id);
     }
 
     render() {
@@ -46,7 +43,7 @@ export class NotePreview extends React.Component {
                 <button onClick={this.editNote}>Ed</button>
                 <button onClick={this.changeNoteColor}>Pa</button>
                 <button onClick={this.addNoteImg}>Ad</button>
-                <button onClick={this.removeNote}>Re</button>
+                <button onClick={() => this.props.removeNote(note.id)}>Re</button>
             </div>
 
         </section>

@@ -3,49 +3,21 @@ import { storageService } from "./storage.service.js"
 export const noteService = {
     query,
     getNoteById,
+    removeNote
 }
 
-const STORAGE_KEY = 'notesDB'
+const NOTES_KEY = 'notesDB'
+const REMOVED_KEY = 'removedNotesDB'
 
-let gNotes = [
-    {
-        id: 'n101',
-        type: 'note-txt',
-        isPinned: true,
-        info: {
-            txt: 'Fullstack Me Baby!'
-        }
-    },
-    {
-        id: 'n102',
-        type: 'note-img',
-        // isPinned: true,
-        info: {
-            // url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
-            url: '../../assets/img/note/test.jpg',
-            title: 'Bobi and Me'
-        },
-        style: {
-            backgroundColoe: '#29294'
-        }
-    },
-    {
-        id: 'n103',
-        type: 'note-todos',
-        // isPinned: true,
-        info: {
-            label: 'Get my stuff together',
-            todos: [
-                { txt: 'Driving liscence', doneAt: null },
-                { txt: 'Coding poewr', doneAt: 187111111 }
-            ]
-        }
-    }
-]
+let gNotes = _loadFromStorage(NOTES_KEY) || _getNotes()
+let gRemovedNotes = _loadFromStorage(REMOVED_KEY) || []
 
 function query() {
-    let notes = _loadFromStorage(STORAGE_KEY) || gNotes
-    _saveToStorage(notes)
+    // gNotes = _loadFromStorage(NOTES_KEY) || _getNotes()
+    _saveToStorage(NOTES_KEY, gNotes)
+
+    // let notes = _loadFromStorage(STORAGE_KEY) || gNotes
+    // _saveToStorage(notes)
 
     // if (filterBy) {
     //     let { title, minPrice, maxPrice } = filterBy
@@ -58,7 +30,7 @@ function query() {
     //     ))
     // }
 
-    return Promise.resolve(notes)
+    return Promise.resolve(gNotes)
 }
 
 function getNoteById(noteId) {
@@ -68,13 +40,174 @@ function getNoteById(noteId) {
 }
 
 function removeNote(noteId) {
+    // add removed note to array - gRemovedNotes
+    _addRemovedNoteToStorage(noteId)
 
+    // remove note from array - gNotes
+    gNotes = gNotes.filter(note => noteId !== note.id)
+    // console.log('remove gNotes:', gNotes);
+    _saveToStorage(NOTES_KEY, gNotes)
+
+    return Promise.resolve()
 }
 
-function _loadFromStorage() {
-    storageService.loadFromStorage()
+function _addRemovedNoteToStorage(noteId) {
+
+    getNoteById(noteId).then(note => {
+        gRemovedNotes.unshift(note)
+        // console.log('gRemovedNotes:', gRemovedNotes);
+        _saveToStorage(REMOVED_KEY, gRemovedNotes)
+    })
 }
 
-function _saveToStorage(notes) {
+function _getNotes() {
+    return [
+        {
+            id: 'n101',
+            type: 'note-txt',
+            isPinned: true,
+            info: {
+                txt: 'Fullstack Me Baby!'
+            }
+        },
+        {
+            id: 'n102',
+            type: 'note-img',
+            // isPinned: true,
+            info: {
+                // url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
+                url: '../../assets/img/note/test.jpg',
+                title: 'Bobi and Me'
+            },
+            style: {
+                backgroundColoe: '#29294'
+            }
+        },
+        {
+            id: 'n103',
+            type: 'note-todos',
+            // isPinned: true,
+            info: {
+                label: 'Get my stuff together',
+                todos: [
+                    { txt: 'Driving liscence', doneAt: null },
+                    { txt: 'Coding poewr', doneAt: 187111111 }
+                ]
+            }
+        },
+        {
+            id: 'n104',
+            type: 'note-img',
+            // isPinned: true,
+            info: {
+                // url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
+                url: '../../assets/img/note/test.jpg',
+                title: 'Bobi and Me'
+            },
+            style: {
+                backgroundColoe: '#29294'
+            }
+        },
+        {
+            id: 'n105',
+            type: 'note-img',
+            // isPinned: true,
+            info: {
+                // url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
+                url: '../../assets/img/note/test.jpg',
+                title: 'Bobi and Me'
+            },
+            style: {
+                backgroundColoe: '#29294'
+            }
+        },
+        {
+            id: 'n106',
+            type: 'note-img',
+            // isPinned: true,
+            info: {
+                // url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
+                url: '../../assets/img/note/test.jpg',
+                title: 'Bobi and Me'
+            },
+            style: {
+                backgroundColoe: '#29294'
+            }
+        },
+        {
+            id: 'n107',
+            type: 'note-img',
+            // isPinned: true,
+            info: {
+                // url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
+                url: '../../assets/img/note/test.jpg',
+                title: 'Bobi and Me'
+            },
+            style: {
+                backgroundColoe: '#29294'
+            }
+        },
+        {
+            id: 'n108',
+            type: 'note-img',
+            // isPinned: true,
+            info: {
+                // url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
+                url: '../../assets/img/note/test.jpg',
+                title: 'Bobi and Me'
+            },
+            style: {
+                backgroundColoe: '#29294'
+            }
+        },
+        {
+            id: 'n109',
+            type: 'note-img',
+            // isPinned: true,
+            info: {
+                // url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
+                url: '../../assets/img/note/test.jpg',
+                title: 'Bobi and Me'
+            },
+            style: {
+                backgroundColoe: '#29294'
+            }
+        },
+        {
+            id: 'n110',
+            type: 'note-img',
+            // isPinned: true,
+            info: {
+                // url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
+                url: '../../assets/img/note/test.jpg',
+                title: 'Bobi and Me'
+            },
+            style: {
+                backgroundColoe: '#29294'
+            }
+        },
+        {
+            id: 'n111',
+            type: 'note-img',
+            // isPinned: true,
+            info: {
+                // url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
+                url: '../../assets/img/note/test.jpg',
+                title: 'Bobi and Me'
+            },
+            style: {
+                backgroundColoe: '#29294'
+            }
+        },
+
+    ]
+}
+
+function _saveToStorage(STORAGE_KEY, notes) {
+    // console.log('storage gNotes:', gNotes);
     storageService.saveToStorage(STORAGE_KEY, notes)
+}
+
+function _loadFromStorage(STORAGE_KEY) {
+    return storageService.loadFromStorage(STORAGE_KEY)
 }
