@@ -5,20 +5,53 @@ const { Link } = ReactRouterDOM
 export class NotePreview extends React.Component {
 
     state = {
-        isHover: false
+        note: this.props.note
+    }
+
+    editNote = () => {
+        // opens NoteDetails
+    }
+    
+    changeNoteColor = () => {
+        
+    }
+    
+    addNoteImg = () => {
+        
+    }
+    
+    removeNote = () => {
+        console.log('hii:', this.state.note.id);
     }
 
     render() {
-        const { note } = this.props
+        const { note } = this.state
 
+        {/* <NoteDetails /> */ }
         return <section className="note-preview">
-            {/* {note.id} */}
+            <button className="pin-note">pin</button>
+
             {note.type === 'note-txt' && note.info.txt}
-            {note.type === 'note-img' && <h2>{note.info.title}</h2>}<img src={note.info.url} />
+            {note.type === 'note-img' &&
+                <div>
+                    {note.info.title}
+                    <img src={note.info.url} />
+                </div>
+            }
             {note.type === 'note-todos' && note.info.label}
 
-            {/* <NoteDetails /> */}
+            <div className="edit">
+                {/* //NoteDetails */}
+                {/* <Link to={"/note/" + note.id}>edit</Link> */}
+                <button onClick={this.editNote}>Ed</button>
+                <button onClick={this.changeNoteColor}>Pa</button>
+                <button onClick={this.addNoteImg}>Ad</button>
+                <button onClick={this.removeNote}>Re</button>
+            </div>
+
         </section>
+
+
 
         // return <Link to={"/note/" + note}>
         //     <section className="note-preview">

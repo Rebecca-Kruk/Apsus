@@ -7,15 +7,11 @@ export class NoteList extends React.Component {
     }
 
     render() {
-        return <section className="note-list">
-            note list
-            <ul>
-                {this.props.notes.map(note => {
-                    console.log('note:', note);
-                    return <li key={note.id}><NotePreview note={note} /></li>
-                })}
-            </ul>
 
+        return <section className="note-list">
+            {this.props.notes.map(note => {
+                return <NotePreview key={note.id} note={note} />
+            })}
         </section>
     }
 }
