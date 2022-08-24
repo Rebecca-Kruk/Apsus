@@ -5,6 +5,7 @@
 /* Cmps */
 
 @import './cmps/mail-list.css';
+@import './cmps/mail-preview.css';
 
 .mail-app-container {
     display: flex;
