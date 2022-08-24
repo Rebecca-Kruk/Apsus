@@ -33,7 +33,7 @@ export class MailApp extends React.Component {
 
     render() {
         const {emails} = this.state
-        console.log('emails from  MailApp', emails);
+        // console.log('emails from  MailApp', emails);
 
         return <div className="mail-app-container">
             <header className="mail-header">
