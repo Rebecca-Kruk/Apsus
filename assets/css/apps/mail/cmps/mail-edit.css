@@ -3,7 +3,7 @@
     flex-direction: column;
     background-color: #fff;
     position: fixed;
-    bottom: 0;
+    bottom: -600px;
     right: 20px;
     height: 50%;
     width: 50%;
@@ -11,6 +11,11 @@
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.43);
     border-radius: 5px;
     flex: 1;
+}
+
+.compose-open{
+    bottom: 0;
+    transition: 0.5s;
 }
 
 

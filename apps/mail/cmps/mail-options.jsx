@@ -19,7 +19,7 @@ export class MailOptions extends React.Component {
                 <i className="fa-solid fa-pencil"></i><span>Compose</span>
             </button>
             {
-                isCompose &&
+               
                 <span><MailEdit onAddEmail={this.props.onAddEmail}
                     isCompose={this.state.isCompose}
                     onCloseCompose={(updatedIsCompose) => {

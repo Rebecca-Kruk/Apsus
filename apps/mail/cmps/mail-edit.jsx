@@ -48,7 +48,7 @@ export class MailEdit extends React.Component {
         const { to, subject, body } = this.state.email
         const { handleChange, onAdd, closeCompose } = this
 
-        return <section className="mail-edit">
+        return <section className={`mail-edit ${this.props.isCompose && 'compose-open'}`}>
             <div className="mail-edit-header">
                 <span>New Message</span>
                 <button onClick={closeCompose}><i className="fa-solid fa-xmark"></i></button>
