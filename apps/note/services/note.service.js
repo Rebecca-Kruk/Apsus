@@ -2,6 +2,7 @@ import { storageService } from "./storage.service.js"
 
 export const noteService = {
     query,
+    getRemovedNotes,
     getNoteById,
     removeNote
 }
@@ -31,6 +32,10 @@ function query() {
     // }
 
     return Promise.resolve(gNotes)
+}
+
+function getRemovedNotes() {
+    return Promise.resolve(gRemovedNotes)
 }
 
 function getNoteById(noteId) {
