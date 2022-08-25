@@ -18,3 +18,8 @@
     min-height: 100%;
     flex: 1;
 }
+
+.mail-details-body span{
+    display: flex;
+    flex: 1;
+}
