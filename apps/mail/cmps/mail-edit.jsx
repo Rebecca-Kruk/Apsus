@@ -21,7 +21,8 @@ export class MailEdit extends React.Component {
         console.log('Mail Destroyed..');
     }
 
-    onAdd = () => {
+    onAdd = (e) => {
+        e.preventDefault()
         emailService.add(this.state.email).then((email) => {
             this.setState({ email })
             this.props.onAddEmail(this.state.email)
