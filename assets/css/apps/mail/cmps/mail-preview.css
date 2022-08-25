@@ -3,9 +3,10 @@
 }
 
 .mail-preview-container{
-    background-color: #f8f9fa;
+    background-color: #f2f6fc;
     display: flex;
     flex: 1;
+    align-self: center;
 }
 
 .fullname{
@@ -25,5 +26,7 @@
     border: none;
     color: rgb(107, 106, 106);
     cursor: pointer;
+    width: 20px;
+    height: 25px;
 }
 
