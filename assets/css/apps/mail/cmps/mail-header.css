@@ -1,17 +1,16 @@
 .mail-header{
+    background-color: #f2f6fc;
+}
+
+.mail-header-bar {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    background-color: #f2f6fc;
 }
 
-.mail-compose {
-    padding: 10px 10px 10px 10px;
-    border-radius: 20px;
-    background-color: aliceblue;
-    font-size: 1em;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.mail-compose-img{
-    width: 0.9em;
-    height: 0.9em;
+.mail-header-searchbar {
+    padding: 10px;
+    border-radius: 10px;
 }

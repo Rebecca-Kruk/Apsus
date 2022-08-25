@@ -12,6 +12,7 @@ export class MailList extends React.Component {
         
 
         return <section className="mail-list">
+            <div className="mail-list-header">mail-list-header</div>
             <ul>
                 {
                     this.props.emails.map(email =>

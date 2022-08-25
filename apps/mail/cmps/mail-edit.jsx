@@ -9,8 +9,7 @@ export class MailEdit extends React.Component {
         }
     }
 
-    componentDidMount(){
-        console.log('from email edit', this.props)
+    componentDidMount() {
         this.loadMails()
     }
 
@@ -18,24 +17,44 @@ export class MailEdit extends React.Component {
 
     }
 
-    handleChange = () =>  {
+    handleChange = () => {
 
     }
 
-    render(){
-        const { body } = this.state.email
+    render() {
+        const { to, subject, body } = this.state.email
         return <section className="mail-edit">
-            <form>
-                <label htmlFor="body"></label>
-                <input 
-                type="text"
-                name="body"
-                value = {body}
-                onChange={this.handleChange}
-                />
+            <div className="mail-edit-header">
+                <span>New Message</span>
+                <button><i className="fa-solid fa-xmark"></i></button>
+            </div>
+            <div className="mail-edit-body">
+                <form >
+                    <div className="mail-edit-input-container">
+                        <label htmlFor="subject">To </label>
+                        <input type="text" name="subject"
+                            value={subject}
+                            onChange={this.handleChange}
+                        />
+                    </div>
+                    <div className="mail-edit-input-container">
+                        <label htmlFor="to">Subject</label>
+                        <input type="text" name="to"
+                            value={to}
+                            onChange={this.handleChange}
+                        />
+                    </div >
+                    <label htmlFor="body"></label>
+                    <textarea
+                        type='text'
+                        name="body"
+                        value={body}
+                        onChange={this.handleChange}
+                    ></textarea>
+                </form>
 
-            </form>
-
+                <button>Send</button>
+            </div>
         </section>
     }
 }

@@ -1,11 +1,10 @@
 .option-list{
-    background-color: #f8f9fa;
+    background-color: #f2f6fc;
     flex: 1;
     padding-left: 10px;
     display: flex;
     flex-direction: column;
     padding: 5px;
-    justify-content: space-around;
 }
 
 .option-list ul{
@@ -16,5 +15,29 @@
 
 .option-list ul li{
     padding: 5px;
-    border-bottom: 1px solid grey;
+}
+
+.btn-mail-compose {
+    display: flex;
+    justify-content: space-between;
+    padding-inline-start: 10px;
+    padding-inline-end: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    background-color: #c2e7ff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    width: 120px;
+}
+
+.btn-mail-compose i,
+span {
+    padding: 5px;
+}
+
+.btn-mail-compose:hover{
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.25);
 }

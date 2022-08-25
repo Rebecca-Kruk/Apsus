@@ -1,8 +1,92 @@
-.mail-edit{
-    background-color: aliceblue;
+.mail-edit {
+    background-color: #fff;
+
     position: fixed;
     bottom: 20px;
     right: 20px;
-    height: 400px;
+    height: 50vh;
     width: 500px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.43);
+    border-radius: 5px;
 }
+
+
+.mail-edit-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    background-color: #f2f6fc;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.mail-edit-header button {
+    background-color: transparent;
+    border: none;
+    color: grey;
+    cursor: pointer;
+}
+
+.mail-edit-header button:hover{
+    background-color: rgb(238, 236, 236);
+}
+
+.mail-edit-header span {
+    color: rgb(34, 33, 33);
+    font-family: Helvetica, Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.1px;
+}
+
+.mail-edit-body {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 10px;
+}
+
+.mail-edit-body label {
+    font-family: Helvetica, Arial, Helvetica, sans-serif;
+    color: grey;
+}
+
+
+.mail-edit-body textarea {
+    width: 100%;
+    height: 300px;
+    font-family: Helvetica, Arial, Helvetica, sans-serif;
+    border: none;
+    font-size: 14px;
+    resize: none;
+    outline-width: 0;
+}
+
+.mail-edit-input-container {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    padding: 5px;
+}
+
+.mail-edit-body input {
+    width: 100%;
+    font-family: Helvetica, Arial, Helvetica, sans-serif;
+    border: none;
+    padding: 5px;
+    outline-width: 0;
+}
+
+.mail-edit-body button {
+    width: 75px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #0b57d0;
+    border: none;
+    color: #fff;
+    font-weight: 500;
+    font-family: Helvetica, Arial, Helvetica, sans-serif;
+    letter-spacing: 0.1px;
+    cursor: pointer;
+}
+

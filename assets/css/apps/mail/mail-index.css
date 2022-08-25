@@ -13,11 +13,7 @@
 .mail-app-container {
     display: flex;
     flex-direction: column;
-    background-color: #f6f8fc;
-    border: 1px black solid;
     padding: 10px;
+    background-color: #f2f6fc;
 }
 
-.border{
-    border-bottom:  1px solid grey;
-}

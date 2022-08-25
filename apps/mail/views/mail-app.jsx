@@ -10,7 +10,7 @@ export class MailApp extends React.Component {
     state = {
         emails: [],
         filterBy: null,
-        isFilter: false, 
+        isFilter: false,
     }
 
     componentDidMount() {
@@ -18,30 +18,29 @@ export class MailApp extends React.Component {
     }
 
     loadEmails = () => {
-        emailService.query(this.state.filterBy).then((emails) =>{
+        emailService.query(this.state.filterBy).then((emails) => {
             // console.log('Emails Loaded...')
-             this.setState( {emails})})
+            this.setState({ emails })
+        })
     }
 
-    onRemoveEmail =(emailId) => {
-        emailService.remove(emailId).then(()=>{
+    onRemoveEmail = (emailId) => {
+        emailService.remove(emailId).then(() => {
             // console.log('Removed')
             const emails = this.state.emails.filter(email => email.id !== emailId)
-            this.setState({emails})
+            this.setState({ emails })
         })
     }
 
     render() {
-        const {emails} = this.state
+        const { emails } = this.state
         // console.log('emails from  MailApp', emails);
 
         return <div className="mail-app-container">
-            <header className="mail-header">
-                <MailHeaderContainer />
-            </header>
+            <MailHeaderContainer />
             <main className="mail-container">
                 <MailOptions />
-                <MailList emails={emails} onRemoveEmail={this.onRemoveEmail}/>
+                <MailList emails={emails} onRemoveEmail={this.onRemoveEmail} />
             </main>
         </div>
     }

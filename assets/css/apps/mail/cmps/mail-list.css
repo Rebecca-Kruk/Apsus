@@ -1,16 +1,32 @@
-.mail-list{
-    background-color: #f8f9fa;
+.mail-list {
+    background-color: #ffffff;
     flex: 5;
+    border-radius: 10px;
 }
 
-.mail-list ul{
+.mail-list-header{
+    color: white;
+    padding: 15px;
+}
+
+.mail-list ul {
     list-style: none;
     margin: 0;
-    padding: 5px;
+    padding: 0;
 }
 
-.mail-list ul li{
-    padding: 5px;
-    border-bottom: 1px solid grey;
+.mail-list ul li {
+    border-bottom: 1px solid rgb(233, 231, 231);
     cursor: pointer;
+    padding: 10px;
+    background-color: #f2f6fc;
+
+}
+
+.mail-list ul li:hover {
+    box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+}
+
+.mail-list ul li span {
+    background-color: #f2f6fc;
 }
