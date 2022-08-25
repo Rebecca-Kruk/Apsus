@@ -21,7 +21,7 @@ export class MailOptions extends React.Component {
             {
                
                 <span><MailEdit onAddEmail={this.props.onAddEmail}
-                    isCompose={this.state.isCompose}
+                    isCompose={isCompose}
                     onCloseCompose={(updatedIsCompose) => {
                         this.setState({ isCompose: updatedIsCompose })
                     }} />
