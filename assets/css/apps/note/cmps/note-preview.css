@@ -27,6 +27,7 @@
 }
 
 .note-preview .edit {
+    /* palette hidden with .edit bar */
     /* display: none; */
     position: absolute;
     bottom: 0;

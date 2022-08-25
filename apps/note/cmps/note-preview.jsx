@@ -2,21 +2,16 @@ import { noteService } from "../services/note.service.js"
 import { NoteColorPalette } from "./note-color-palette.jsx"
 import { NoteDetails } from "./note-details.jsx"
 
-const { Link } = ReactRouterDOM
-
 export class NotePreview extends React.Component {
 
     state = {
         note: this.props.note,
         isOnEdit: false,
-        paletteIsHidden: true,
-        // classBgColor: ''
+        paletteIsHidden: true
     }
 
-    inputRef = React.createRef()
-
     componentDidMount() {
-        // console.log('inputRef:', this.inputRef);
+        document.addEventListener('click', this.closePaletteColor)
     }
 
     // opens NoteDetails Modal
@@ -24,30 +19,33 @@ export class NotePreview extends React.Component {
         this.setState({ isOnEdit: true })
     }
 
-    openPaletteColor = () => {
+    openPaletteColor = (ev) => {
+        ev.stopPropagation()
         const { paletteIsHidden } = this.state
         this.setState({ paletteIsHidden: !paletteIsHidden })
     }
 
     changeNoteColor = (ev) => {
-        ev.preventDefault()
+        ev.stopPropagation()
         const { className } = ev.target
-        this.setState({ note: {...this.state.note, classBgColor: className} })
-        // this.inputRef.current.style.backgroundColor = bgcolor
+        this.setState(prevState => ({ note: { ...prevState.note, classBgColor: className } }),
+            () => { noteService.updateNote(this.state.note) }
+        )
+
+        // update service and then view(state) ???
+        // noteService.updateNote(updated.note)
+        //     .then(note => this.setState({ note }))
     }
 
-
-
-    addNoteImg = () => {
-
+    closePaletteColor = () => {
+        this.setState({ paletteIsHidden: true })
     }
 
     render() {
         const { note, isOnEdit, paletteIsHidden } = this.state
-        console.log('note:', note);
-        console.log('classBgColor:', note.classBgColor);
+        // console.log('note:', note);
 
-        return <section className={`note-preview ${note.classBgColor}`} ref={this.inputRef}>
+        return <section className={`note-preview ${note.classBgColor}`}>
             <button className="pin-note">pin</button>
 
             {note.type === 'note-txt' && note.info.txt}
@@ -72,14 +70,10 @@ export class NotePreview extends React.Component {
             <div className="edit">
                 <button onClick={this.editNote}>Ed</button>
                 <div className="color-palette-dropdown">
-                    <button onClick={this.openPaletteColor}>
-                        Pa
-                        {/* add pallete icon */}
-                    </button>
+                    <button onClick={this.openPaletteColor}>Pa{/* add pallete icon */}</button>
                     <NoteColorPalette paletteIsHidden={paletteIsHidden} changeNoteColor={this.changeNoteColor} />
                 </div>
-                <button onClick={this.addNoteImg}>Ad</button>
-                <button onClick={() => this.props.removeNote(note.id)}>Re</button>
+                <button onClick={() => this.props.removeNote(note.id)}>Re{/* add trash icon */}</button>
             </div>
 
             {isOnEdit && <NoteDetails note={note} />}
