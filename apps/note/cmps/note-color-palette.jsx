@@ -2,20 +2,13 @@ export class NoteColorPalette extends React.Component {
 
     render() {
         const { paletteIsHidden, changeNoteColor } = this.props
+        const colors = ['white', 'red', 'orange', 'yellow', 'green', 'teal', 'blue',
+            'dark-blue', 'purple', 'pink', 'brown', 'grey']
 
         return <ul className="color-palette-menu" hidden={paletteIsHidden}>
-            <li className="bg-white" onClick={changeNoteColor}></li>
-            <li className="bg-red" onClick={changeNoteColor}></li>
-            <li className="bg-orange" onClick={changeNoteColor}></li>
-            <li className="bg-yellow" onClick={changeNoteColor}></li>
-            <li className="bg-green" onClick={changeNoteColor}></li>
-            <li className="bg-teal" onClick={changeNoteColor}></li>
-            <li className="bg-blue" onClick={changeNoteColor}></li>
-            <li className="bg-dark-blue" onClick={changeNoteColor}></li>
-            <li className="bg-purple" onClick={changeNoteColor}></li>
-            <li className="bg-pink" onClick={changeNoteColor}></li>
-            <li className="bg-brown" onClick={changeNoteColor}></li>
-            <li className="bg-grey" onClick={changeNoteColor}></li>
+            {colors.map(color => {
+                return <li key={color} className={`bg-${color}`} onClick={changeNoteColor}></li>
+            })}
         </ul >
     }
 
@@ -24,19 +17,13 @@ export class NoteColorPalette extends React.Component {
 // not working with component function
 // function NoteColorPalette({ paletteIsHidden, changeNoteColor }) {
 
+//     const colors = ['white', 'red', 'orange', 'yellow', 'green', 'teal', 'blue',
+//         'dark-blue', 'purple', 'pink', 'brown', 'grey']
+
 //     return <ul className="color-palette-menu" hidden={paletteIsHidden}>
-//         <li className="bg-white" onClick={changeNoteColor}></li>
-//         <li className="bg-red" onClick={changeNoteColor}></li>
-//         <li className="bg-orange" onClick={changeNoteColor}></li>
-//         <li className="bg-yellow" onClick={changeNoteColor}></li>
-//         <li className="bg-green" onClick={changeNoteColor}></li>
-//         <li className="bg-teal" onClick={changeNoteColor}></li>
-//         <li className="bg-blue" onClick={changeNoteColor}></li>
-//         <li className="bg-dark-blue" onClick={changeNoteColor}></li>
-//         <li className="bg-purple" onClick={changeNoteColor}></li>
-//         <li className="bg-pink" onClick={changeNoteColor}></li>
-//         <li className="bg-brown" onClick={changeNoteColor}></li>
-//         <li className="bg-grey" onClick={(ev) => changeNoteColor(ev)}></li>
+//         {colors.map(color => {
+//             return <li key={color} className={`bg-${color}`} onClick={changeNoteColor}></li>
+//         })}
 //     </ul >
 
 // }

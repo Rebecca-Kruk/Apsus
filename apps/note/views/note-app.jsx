@@ -8,7 +8,7 @@ export class NoteApp extends React.Component {
         return <section className="note-app menu-opened ">
             <div className="main-screen full" ></div>
             <NoteHeader />
-            <NoteAdd />
+            {/* <NoteAdd /> */}
             <NoteList />
         </section>
     }

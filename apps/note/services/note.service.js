@@ -1,4 +1,5 @@
 import { storageService } from "./storage.service.js"
+import { utilService } from "../../../services/util.service.js"
 
 export const noteService = {
     query,
@@ -17,6 +18,7 @@ let gRemovedNotes = _loadFromStorage(REMOVED_KEY) || []
 
 function query() {
     // gNotes = _loadFromStorage(NOTES_KEY) || _getNotes()
+    // save - do I need it ???
     _saveToStorage(NOTES_KEY, gNotes)
 
     // let notes = _loadFromStorage(STORAGE_KEY) || gNotes
@@ -52,12 +54,9 @@ function updateNote(updatedNote) {
     return Promise.resolve(updatedNote)
 }
 
-// temporary id
-let id = 0
-
 function addNote(type, info, classBgColor) {
-    newNote = {
-        id: id++,
+    const newNote = {
+        id: utilService.makeId(),
         type,
         isPinned: false,
         info,
@@ -66,6 +65,8 @@ function addNote(type, info, classBgColor) {
 
     gNotes.unshift(newNote)
     _saveToStorage(NOTES_KEY, gNotes)
+
+    return Promise.resolve(newNote)
 }
 
 function removeNote(noteId) {
@@ -209,8 +210,8 @@ function _getNotes() {
             type: 'note-img',
             // isPinned: true,
             info: {
-                // url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
-                url: '/assets/img/note/test.jpg',
+                url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
+                // url: '/assets/img/note/test.jpg',
                 title: 'Bobi and Me'
             },
             classBgColor: 'bg-brown'

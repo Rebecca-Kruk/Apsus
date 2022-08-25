@@ -6,6 +6,7 @@
 
 @import './cmps/note-header.css';
 @import './cmps/note-search.css';
+@import './cmps/note-add.css';
 @import './cmps/note-list.css';
 @import './cmps/note-preview.css';
 @import './cmps/note-color-palette.css';
