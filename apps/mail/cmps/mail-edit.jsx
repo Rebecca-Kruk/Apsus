@@ -54,7 +54,7 @@ export class MailEdit extends React.Component {
                 <button onClick={closeCompose}><i className="fa-solid fa-xmark"></i></button>
             </div>
             <div className="mail-edit-body">
-                <form onSubmit={onAdd}>
+                <form className="compose-form" onSubmit={onAdd}>
                     <div className="mail-edit-input-container">
                         <label htmlFor="to">To</label>
                         <input type="text" name="to"
