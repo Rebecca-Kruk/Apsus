@@ -1,0 +1,17 @@
+.mail-header{
+    display: flex;
+}
+
+.mail-compose {
+    padding: 10px 10px 10px 10px;
+    border-radius: 20px;
+    background-color: aliceblue;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.mail-compose-img{
+    width: 0.9em;
+    height: 0.9em;
+}

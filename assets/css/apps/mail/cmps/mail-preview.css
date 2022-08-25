@@ -1,11 +1,38 @@
 .mail-preview{
-    background-color: brown;
+    background-color: #f8f9fa;
 }
 
 .mail-preview-container{
-    background-color: coral;
+    background-color: #f8f9fa;
     display: flex;
-    justify-content: center;
-    justify-content: space-between;
     flex: 1;
+}
+
+
+.fullname{
+    flex: 1;
+}
+
+.subject{
+    flex: 1;
+}
+
+.sentaAt{
+    flex: 1;
+}
+
+.btn-mail-perview{
+    display: flex;
+    font-size: 1em;
+}
+
+.btn-remove{
+    background-color: transparent;
+    border: none;
+    
+}
+
+.btn-edit{
+    background-color: transparent;
+    border: none;
 }

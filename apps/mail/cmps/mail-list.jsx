@@ -16,7 +16,9 @@ export class MailList extends React.Component {
                 {
                     this.props.emails.map(email =>
                         <li key={email.id}>
-                            <EmailPreview email={email} logggedinUser={logggedinUser} onRemoveEmail={this.props.onRemoveEmail}/>
+                            <EmailPreview email={email} 
+                            logggedinUser={logggedinUser} 
+                            onRemoveEmail={this.props.onRemoveEmail}/>
                         </li>
                     )
                 }

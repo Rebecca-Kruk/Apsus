@@ -1,7 +1,6 @@
 .mail-list{
-    background-color: blue;
+    background-color: #f8f9fa;
     flex: 5;
-    border: 1px black solid;
 }
 
 .mail-list ul{
@@ -10,8 +9,8 @@
     padding: 5px;
 }
 
-
 .mail-list ul li{
     padding: 5px;
     border-bottom: 1px solid grey;
+    cursor: pointer;
 }

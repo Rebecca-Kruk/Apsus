@@ -1,6 +1,5 @@
 .option-list{
-    background-color: aquamarine;
-    border: 1px black solid;
+    background-color: #f8f9fa;
     flex: 1;
     padding-left: 10px;
     display: flex;

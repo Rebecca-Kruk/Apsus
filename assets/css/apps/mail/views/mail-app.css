@@ -5,10 +5,10 @@
 
 .mail-container{
     display: flex;
-    border: 1px black solid;
+    border-radius: 20px;
 }
 
 .mail-header{
     padding: 10px;
-    background-color: blueviolet;
+    background-color: #f6f8fc;
 }

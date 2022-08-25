@@ -65,7 +65,7 @@ function getMonthName(date) {
 
 function createdAt(time) {
     var newDate = new Date(time)
-    var year = newDate.getFullYear()
+    // var year = newDate.getFullYear()
     var month = newDate.getMonth() + 1
     var date = newDate.getDate() 
     var hours = newDate.getHours()
@@ -74,13 +74,14 @@ function createdAt(time) {
     var minutes = newDate.getMinutes()
     var seconds = newDate.getSeconds()
   
-    var ampm = hours >= 12 ? 'AM' : 'PM'
+    var ampm = hours >= 12 ? 'PM' : 'AM'
   
-    var monthToDisplay = (month + '').padStart(2, '0')
-    var dateToDisplay = (date + '').padStart(2, '0')
+    // var monthToDisplay = (month + '').padStart(2, '0')
+    // var dateToDisplay = (date + '').padStart(2, '0')
     var hoursToDisplay = (hours + '').padStart(2, '0')
     var minutesToDisplay = (minutes + '').padStart(2, '0')
-    var secondsToDisplay = (seconds + '').padStart(2, '0')
+    // var secondsToDisplay = (seconds + '').padStart(2, '0')
   
-    return `${monthToDisplay}/${dateToDisplay}/${year} Time: ${hoursToDisplay}:${minutesToDisplay}:${secondsToDisplay} ${ampm}`
+    return `${hoursToDisplay}:${minutesToDisplay} ${ampm}`
+    // return `${monthToDisplay}/${dateToDisplay}/${year} Time: ${hoursToDisplay}:${minutesToDisplay}:${secondsToDisplay} ${ampm}`
   }

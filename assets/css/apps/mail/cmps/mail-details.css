@@ -1,3 +1,9 @@
-.mail-details{
-background-color: aqua;
+.mail-details {
+    background-color: #f8f9fa;
+}
+
+.mail-content{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
 }
