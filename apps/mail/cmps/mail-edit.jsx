@@ -11,14 +11,12 @@ export class MailEdit extends React.Component {
         }
     }
 
-    componentDidMount() {
-        console.log('Mail Alive..');
-        document.addEventListener("click", () => this.closeCompose)
-    }
-
-    componentWillUnmount() {
-        document.removeEventListener("click", () => this.closeCompose)
-        console.log('Mail Destroyed..');
+    clearState=()=>{
+        this.setState({email: {
+            to: '',
+            subject: '',
+            body: '',
+        }})
     }
 
     onAdd = (e) => {
@@ -26,7 +24,10 @@ export class MailEdit extends React.Component {
         emailService.add(this.state.email).then((email) => {
             this.setState({ email })
             this.props.onAddEmail(this.state.email)
+            this.clearState()
             this.closeCompose()
+         
+
         })
     }
 
@@ -42,6 +43,7 @@ export class MailEdit extends React.Component {
     }
 
     closeCompose = () => {
+        this.clearState()
         this.props.onCloseCompose(false)
     }
 
