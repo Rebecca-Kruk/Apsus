@@ -19,13 +19,13 @@ export class MailApp extends React.Component {
 
     loadEmails = () => {
         emailService.query(this.state.filterBy).then((emails) =>{
-            console.log('Emails Loaded...')
+            // console.log('Emails Loaded...')
              this.setState( {emails})})
     }
 
     onRemoveEmail =(emailId) => {
         emailService.remove(emailId).then(()=>{
-            console.log('Removed')
+            // console.log('Removed')
             const emails = this.state.emails.filter(email => email.id !== emailId)
             this.setState({emails})
         })

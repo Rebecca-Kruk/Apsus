@@ -1,0 +1,9 @@
+.note-search input[type=search] {
+    background-color: #f3f3f3;
+    border: none;
+    border-radius: 8px;
+    width: 720px;
+    height: 48px;
+    margin: 8px 0;
+    margin-left: 250px;
+}
