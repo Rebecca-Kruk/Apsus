@@ -1,4 +1,5 @@
 import { noteService } from "../services/note.service.js"
+import { NoteColorPalette } from "./note-color-palette.jsx"
 import { NoteDetails } from "./note-details.jsx"
 
 const { Link } = ReactRouterDOM
@@ -8,7 +9,14 @@ export class NotePreview extends React.Component {
     state = {
         note: this.props.note,
         isOnEdit: false,
-        paletteIsHidden: true
+        paletteIsHidden: true,
+        // classBgColor: ''
+    }
+
+    inputRef = React.createRef()
+
+    componentDidMount() {
+        // console.log('inputRef:', this.inputRef);
     }
 
     // opens NoteDetails Modal
@@ -16,9 +24,19 @@ export class NotePreview extends React.Component {
         this.setState({ isOnEdit: true })
     }
 
-    changeNoteColor = () => {
-        this.setState({ paletteIsHidden: false })
+    openPaletteColor = () => {
+        const { paletteIsHidden } = this.state
+        this.setState({ paletteIsHidden: !paletteIsHidden })
     }
+
+    changeNoteColor = (ev) => {
+        ev.preventDefault()
+        const { className } = ev.target
+        // this.setState({ note: [...this.state.note, className] })
+        // this.inputRef.current.style.backgroundColor = bgcolor
+    }
+
+
 
     addNoteImg = () => {
 
@@ -26,8 +44,10 @@ export class NotePreview extends React.Component {
 
     render() {
         const { note, isOnEdit, paletteIsHidden } = this.state
+        // console.log('note:', note);
+        // console.log('classBgColor:', note.classBgColor);
 
-        return <section className="note-preview">
+        return <section className={`note-preview ${note.classBgColor}`} ref={this.inputRef}>
             <button className="pin-note">pin</button>
 
             {note.type === 'note-txt' && note.info.txt}
@@ -51,22 +71,12 @@ export class NotePreview extends React.Component {
 
             <div className="edit">
                 <button onClick={this.editNote}>Ed</button>
-                <div className="dropdown-color-palette">
-                    <button onClick={this.changeNoteColor}>Pa</button>
-                    <div className="color-palette" hidden={paletteIsHidden}>
-                        <div className="bg-white">w</div>
-                        <div className="bg-red"></div>
-                        <div className="bg-orange"></div>
-                        <div className="bg-yellow"></div>
-                        <div className="bg-green"></div>
-                        <div className="bg-teal">t</div>
-                        <div className="bg-blue"></div>
-                        <div className="bg-dark-blue"></div>
-                        <div className="bg-purple"></div>
-                        <div className="bg-pink">p</div>
-                        <div className="bg-brown"></div>
-                        <div className="bg-grey">g</div>
-                    </div>
+                <div className="color-palette-dropdown">
+                    <button onClick={this.openPaletteColor}>
+                        Pa
+                        {/* add pallete icon */}
+                    </button>
+                    <NoteColorPalette paletteIsHidden={paletteIsHidden} changeNoteColor={this.changeNoteColor} />
                 </div>
                 <button onClick={this.addNoteImg}>Ad</button>
                 <button onClick={() => this.props.removeNote(note.id)}>Re</button>
