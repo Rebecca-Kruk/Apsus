@@ -1,13 +1,16 @@
 .option-list{
-    background-color: #f2f6fc;
+    background-color: #f6f8fc;
     flex: 1;
     padding-left: 10px;
     display: flex;
     flex-direction: column;
     padding: 5px;
+    position: relative;
 }
 
 .option-list ul{
+    position: absolute;
+    top: 50px;
     list-style: none;
     margin: 0;
     padding: 5px;

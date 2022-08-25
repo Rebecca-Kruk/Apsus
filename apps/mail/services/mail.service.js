@@ -1,4 +1,5 @@
 import { storageService } from '../../../services/storage.service.js'
+import { utilService } from '../../../services/util.service.js'
 
 export const emailService = {
     getMail,
@@ -6,7 +7,8 @@ export const emailService = {
     query,
     getLoggedinUser,
     remove,
-    getById
+    getById,
+    add
 }
 
 const KEY = 'emailsDB'
@@ -16,6 +18,14 @@ function query(filterBy) {
     let emails = storageService.loadFromStorage(KEY) || gMails
     storageService.saveToStorage(KEY, emails)
     return Promise.resolve(emails)
+}
+
+function add(newEmail){
+    let emails = storageService.loadFromStorage(KEY) || []
+    let email = _createEmail(newEmail)
+    emails = [email, ...emails]
+    storageService.saveToStorage(KEY, emails)
+    return Promise.resolve(email)
 }
 
 function remove(emailId) {
@@ -39,6 +49,16 @@ function getById(emailId) {
     const emails = storageService.loadFromStorage(KEY)
     const email = emails.find(email => emailId === email.id)
     return Promise.resolve(email)
+}
+
+function _createEmail({subject, body, to}){
+    return {
+        id: utilService.makeId(),
+        subject,
+        body,
+        sentAt: Date.now(),
+        to
+    }
 }
 
 const loggedinUser = {

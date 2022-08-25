@@ -1,11 +1,13 @@
 .mail-edit {
+    display: flex;
+    flex-direction: column;
     background-color: #fff;
-
     position: fixed;
     bottom: 20px;
     right: 20px;
-    height: 50vh;
-    width: 500px;
+    height: 50%;
+    width: 50%;
+    max-width: 500px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.43);
     border-radius: 5px;
 }
@@ -27,7 +29,7 @@
     cursor: pointer;
 }
 
-.mail-edit-header button:hover{
+.mail-edit-header button:hover {
     background-color: rgb(238, 236, 236);
 }
 
@@ -89,4 +91,3 @@
     letter-spacing: 0.1px;
     cursor: pointer;
 }
-

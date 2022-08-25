@@ -2,7 +2,7 @@ import { MailList } from "../cmps/mail-list.jsx";
 import { MailOptions } from "../cmps/mail-options.jsx";
 import { MailHeaderContainer } from "../cmps/mail-header-container.jsx";
 
-import { utilService } from '../../../services/util.service.js'
+// import { utilService } from '../../../services/util.service.js'
 import { emailService } from '../services/mail.service.js'
 
 export class MailApp extends React.Component {
@@ -19,14 +19,18 @@ export class MailApp extends React.Component {
 
     loadEmails = () => {
         emailService.query(this.state.filterBy).then((emails) => {
-            // console.log('Emails Loaded...')
             this.setState({ emails })
+        })
+    }
+
+    onAddEmail = (newEmail) => {
+        this.setState({ newEmail }, () => {
+            this.loadEmails()
         })
     }
 
     onRemoveEmail = (emailId) => {
         emailService.remove(emailId).then(() => {
-            // console.log('Removed')
             const emails = this.state.emails.filter(email => email.id !== emailId)
             this.setState({ emails })
         })
@@ -34,13 +38,13 @@ export class MailApp extends React.Component {
 
     render() {
         const { emails } = this.state
-        // console.log('emails from  MailApp', emails);
+        const { onRemoveEmail, onAddEmail } = this
 
         return <div className="mail-app-container">
             <MailHeaderContainer />
             <main className="mail-container">
-                <MailOptions />
-                <MailList emails={emails} onRemoveEmail={this.onRemoveEmail} />
+                <MailOptions onAddEmail={onAddEmail} />
+                <MailList emails={emails} onRemoveEmail={onRemoveEmail} />
             </main>
         </div>
     }
