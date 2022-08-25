@@ -22,7 +22,9 @@ export class EmailPreview extends React.Component {
                 <span className="fullname">{logggedinUser.fullname}</span><br />
                 <span className="subject">{email.subject}</span><br />
                 <span className="sentAt">{utilService.createdAt(email.sentAt)}</span><br />
-                <button className="btn-remove" onClick={() => this.props.onRemoveEmail(email.id)}><i className="fa-solid fa-trash-can"></i></button>
+                <button className="btn-remove" onClick={() => this.props.onRemoveEmail(email.id)}>
+                    <i className="fa-solid fa-trash-can"></i>
+                </button>
             </div>
             {isSelected && <EmailDetails email={email} logggedinUser={logggedinUser} onRemoveEmail={this.props.onRemoveEmail} />}
         </article>

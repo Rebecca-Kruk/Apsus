@@ -24,7 +24,6 @@ export class MailEdit extends React.Component {
     onAdd = () => {
         emailService.add(this.state.email).then((email) => {
             this.setState({ email })
-        }, () => {
             this.props.onAddEmail(this.state.email)
             this.closeCompose()
         })

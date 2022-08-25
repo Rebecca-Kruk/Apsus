@@ -28,10 +28,11 @@ export class MailOptions extends React.Component {
                 </span>
             }
             <ul>
-                <li>Inbox</li>
-                <li>Starred</li>
-                <li>Sent Mail</li>
-                <li>Drafts</li>
+                <li><i className="fa-solid fa-inbox"></i><span>Inbox</span></li>
+                <li><i className="fa-solid fa-star"></i><span>Starred</span></li>
+                <li><i className="fa-solid fa-paper-plane"></i><span>Sent Mail</span></li>
+                <li><i className="fa-solid fa-file"></i><span>Draft</span></li>
+                <li><i className="fa-solid fa-trash-can"></i><span>Bin</span></li>
             </ul>
         </section>
     }
