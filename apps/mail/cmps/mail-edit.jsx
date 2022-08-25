@@ -11,12 +11,14 @@ export class MailEdit extends React.Component {
         }
     }
 
-    clearState=()=>{
-        this.setState({email: {
-            to: '',
-            subject: '',
-            body: '',
-        }})
+    clearState = () => {
+        this.setState({
+            email: {
+                to: '',
+                subject: '',
+                body: '',
+            }
+        })
     }
 
     onAdd = (e) => {
@@ -26,7 +28,7 @@ export class MailEdit extends React.Component {
             this.props.onAddEmail(this.state.email)
             this.clearState()
             this.closeCompose()
-         
+
 
         })
     }
