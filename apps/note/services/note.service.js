@@ -73,7 +73,8 @@ function _getNotes() {
             isPinned: true,
             info: {
                 txt: 'Fullstack Me Baby!'
-            }
+            },
+            classBgColor: 'bg-pink'
         },
         {
             id: 'n102',
@@ -84,8 +85,9 @@ function _getNotes() {
                 url: '../../assets/img/note/test.jpg',
                 title: 'Bobi and Me'
             },
+            classBgColor: '',
             style: {
-                backgroundColoe: '#29294'
+                backgroundColor: '#29294'
             }
         },
         {
@@ -98,7 +100,8 @@ function _getNotes() {
                     { txt: 'Driving liscence', doneAt: null },
                     { txt: 'Coding poewr', doneAt: 187111111 }
                 ]
-            }
+            },
+            classBgColor: ''
         },
         {
             id: 'n104',
@@ -109,9 +112,7 @@ function _getNotes() {
                 url: '../../assets/img/note/test.jpg',
                 title: 'Bobi and Me'
             },
-            style: {
-                backgroundColoe: '#29294'
-            }
+            classBgColor: 'bg-green'
         },
         {
             id: 'n105',
@@ -122,9 +123,7 @@ function _getNotes() {
                 url: '../../assets/img/note/test.jpg',
                 title: 'Bobi and Me'
             },
-            style: {
-                backgroundColoe: '#29294'
-            }
+            classBgColor: ''
         },
         {
             id: 'n106',
@@ -135,9 +134,7 @@ function _getNotes() {
                 url: '../../assets/img/note/test.jpg',
                 title: 'Bobi and Me'
             },
-            style: {
-                backgroundColoe: '#29294'
-            }
+            classBgColor: ''
         },
         {
             id: 'n107',
@@ -148,9 +145,7 @@ function _getNotes() {
                 url: '../../assets/img/note/test.jpg',
                 title: 'Bobi and Me'
             },
-            style: {
-                backgroundColoe: '#29294'
-            }
+            classBgColor: ''
         },
         {
             id: 'n108',
@@ -161,9 +156,7 @@ function _getNotes() {
                 url: '../../assets/img/note/test.jpg',
                 title: 'Bobi and Me'
             },
-            style: {
-                backgroundColoe: '#29294'
-            }
+            classBgColor: ''
         },
         {
             id: 'n109',
@@ -174,9 +167,7 @@ function _getNotes() {
                 url: '../../assets/img/note/test.jpg',
                 title: 'Bobi and Me'
             },
-            style: {
-                backgroundColoe: '#29294'
-            }
+            classBgColor: ''
         },
         {
             id: 'n110',
@@ -187,9 +178,7 @@ function _getNotes() {
                 url: '../../assets/img/note/test.jpg',
                 title: 'Bobi and Me'
             },
-            style: {
-                backgroundColoe: '#29294'
-            }
+            classBgColor: ''
         },
         {
             id: 'n111',
@@ -200,9 +189,7 @@ function _getNotes() {
                 url: '../../assets/img/note/test.jpg',
                 title: 'Bobi and Me'
             },
-            style: {
-                backgroundColoe: '#29294'
-            }
+            classBgColor: 'bg-brown'
         },
 
     ]
