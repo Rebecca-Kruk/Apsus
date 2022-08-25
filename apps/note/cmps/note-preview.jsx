@@ -32,7 +32,7 @@ export class NotePreview extends React.Component {
     changeNoteColor = (ev) => {
         ev.preventDefault()
         const { className } = ev.target
-        // this.setState({ note: [...this.state.note, className] })
+        this.setState({ note: {...this.state.note, classBgColor: className} })
         // this.inputRef.current.style.backgroundColor = bgcolor
     }
 
@@ -44,8 +44,8 @@ export class NotePreview extends React.Component {
 
     render() {
         const { note, isOnEdit, paletteIsHidden } = this.state
-        // console.log('note:', note);
-        // console.log('classBgColor:', note.classBgColor);
+        console.log('note:', note);
+        console.log('classBgColor:', note.classBgColor);
 
         return <section className={`note-preview ${note.classBgColor}`} ref={this.inputRef}>
             <button className="pin-note">pin</button>
