@@ -6,6 +6,7 @@
 .mail-container{
     display: flex;
     border-radius: 20px;
+    height: 100vh;
 }
 
 .mail-header{

@@ -1,9 +1,17 @@
 .mail-details {
-    background-color: #f8f9fa;
+    background-color: #f2f6fc;
+    display: flex;
+    flex-direction: column;
 }
 
-.mail-content{
+.mail-details-header{
     display: flex;
-    justify-content: space-between;
-    padding-top: 20px;
+    flex-direction: column;
+    border-bottom: 1px solid grey;
+}
+
+.mail-details-body{
+    padding: 10px;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
 }
