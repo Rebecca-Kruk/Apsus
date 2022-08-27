@@ -88,12 +88,12 @@ export class NoteEdit extends React.Component {
 
             <button id="save-btn" onClick={this.saveNote}>Save</button>
             <div className="options-buttons">
-                <button onClick={() => this.setNoteType('note-txt')}><i class="fa-solid fa-pencil"></i></button>
-                <button id="img-btn">
-                    <i class="fa-solid fa-image"></i>
+                <button title="New text note" onClick={() => this.setNoteType('note-txt')}><i className="fa-solid fa-pencil"></i></button>
+                <button id="img-btn" title="New note with image">
+                    <i className="fa-solid fa-image"></i>
                     <input type="file" onClick={() => this.setNoteType('note-img')} onChange={this.setNoteInfo} />
                 </button>
-                <button onClick={() => this.setNoteType('note-todos')}><i class="fa-solid fa-list-ul"></i></button>
+                <button title="New list" onClick={() => this.setNoteType('note-todos')}><i className="fa-solid fa-list-ul"></i></button>
             </div>
         </section>
     }

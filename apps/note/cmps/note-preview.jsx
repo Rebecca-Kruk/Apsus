@@ -47,13 +47,13 @@ export class NotePreview extends React.Component {
 
 
         return <section className={`note-preview ${note.classBgColor}`}>
-            <button className="pin-note"><i class="fa-solid fa-thumbtack"></i></button>
+            <button className="pin-note"><i className="fa-solid fa-thumbtack"></i></button>
 
             {note.type === 'note-txt' && note.info.txt}
             {note.type === 'note-img' &&
                 <div>
                     {/* {seperatedText.lenght} */}
-                    {note.info.title}
+                    <p>{note.info.title}</p>
                     <img src={note.info.url} />
                 </div>
             }
@@ -70,7 +70,7 @@ export class NotePreview extends React.Component {
             }
 
             <div className="edit">
-                <button onClick={this.editNote}><i class="fa-solid fa-pen-to-square"></i></button>
+                <button title="Edit note" onClick={this.editNote}><i className="fa-solid fa-pen-to-square"></i></button>
 
                 {isOnEdit &&
                     <div className="note-edit">
@@ -79,10 +79,10 @@ export class NotePreview extends React.Component {
                 }
 
                 <div className="color-palette-dropdown">
-                    <button onClick={this.openPaletteColor}><i class="fa-solid fa-palette"></i></button>
+                    <button title="Background options" onClick={this.openPaletteColor}><i className="fa-solid fa-palette"></i></button>
                     <NoteColorPalette paletteIsHidden={paletteIsHidden} changeNoteColor={this.changeNoteColor} />
                 </div>
-                <button onClick={() => this.props.removeNote(note.id)}><i class="fa-solid fa-trash"></i></button>
+                <button title="Delete note" onClick={() => this.props.removeNote(note.id)}><i className="fa-solid fa-trash"></i></button>
             </div>
 
 
