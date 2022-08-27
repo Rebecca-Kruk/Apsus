@@ -9,7 +9,6 @@ export class MailList extends React.Component {
 
     render() {
         return <section className="mail-list">
-            {/* <div className="mail-list-header">mail-list-header</div> */}
             <ul>
                 {
                     this.props.emails.map(email =>
@@ -24,7 +23,7 @@ export class MailList extends React.Component {
                                 onRemoveEmail={this.props.onRemoveEmail}
                                 onReadEmail={this.props.onReadEmail}
                                 onNotReadEmail={this.props.onNotReadEmail}
-
+                                onStaredEmail={this.props.onStaredEmail}
                             />
                         </li>
                     )

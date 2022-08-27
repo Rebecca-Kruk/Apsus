@@ -1,35 +1,38 @@
-.mail-preview{
+.mail-preview {
     background-color: #f8f9fa;
 }
 
-.mail-preview-container{
+.mail-preview-container {
     background-color: #f2f6fc;
     display: flex;
     flex: 1;
     align-self: center;
 }
 
-.fullname{
+.fullname {
     flex: 1;
 }
 
-.subject{
+.subject {
     flex: 3;
 }
 
-.sentaAt{
+.sentaAt {
     flex: 1;
 }
 
-.btn-preview{
+.btn-preview {
     background-color: #f2f6fc;
     border: none;
     color: rgb(107, 106, 106);
     cursor: pointer;
     width: 20px;
     height: 25px;
+    visibility: hidden;
 }
 
-.not-read{
+.not-read {
     font-weight: 600;
 }
+
+

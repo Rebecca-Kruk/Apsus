@@ -35,6 +35,15 @@ export class EmailPreview extends React.Component {
         this.props.onCloseCompose(false)
     }
 
+
+    onStared = (ev, emailId) => {
+        ev.stopPropagation()
+        const { email } = this.state
+        email.isRemoved = true
+        this.setState({ email: { ...email, isStared: true } })
+        this.props.onStaredEmail(emailId)
+    }
+
     setNotReadEmail = (ev, emailId) => {
         ev.stopPropagation()
         const { email } = this.state
@@ -44,7 +53,7 @@ export class EmailPreview extends React.Component {
     }
 
     render() {
-        const { onSelect, onRemove, setNotReadEmail } = this
+        const { onSelect, onRemove, setNotReadEmail, onStared } = this
         const { isSelected } = this.state
         const { email, filterBy } = this.props
         const { status } = filterBy
@@ -57,6 +66,10 @@ export class EmailPreview extends React.Component {
                 </span>
                 <span className="subject">{email.subject}</span>
                 <span className="sentAt">{utilService.createdAt(email.sentAt)}</span>
+                {status !== 'Bin' && status !== 'Draft' && <button className="btn-preview"
+                    onClick={(ev) => onStared(ev, email.id)}>
+                    <i className="fa-solid fa-star"></i>
+                </button>}
                 {(status !== 'Sent' && status !== 'Draft') &&
                     <button className="btn-preview"
                         onClick={(ev) => setNotReadEmail(ev, email.id)}>

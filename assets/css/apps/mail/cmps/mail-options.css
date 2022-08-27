@@ -6,29 +6,37 @@
     flex-direction: column;
     position: relative;
     padding-right: 15px;
+    width: 250px;
 }
 
 .option-list ul {
     position: absolute;
+    width: 100%;
     top: 50px;
     list-style: none;
     margin: 0;
     padding-right: 0;
     padding-left: 0;
-    padding-top: 5px;
+    padding-top: 15px;
     display: flex;
     flex-direction: column;
     flex: 1;
 }
 
 .option-list ul li {
+    display: flex;
+    justify-content: space-between;
     padding-top: 5px;
     padding-bottom: 5px;
-    padding-inline-start: 0;
-    padding-inline-end: 0;
-    width: 120px;
+    padding-right: 8px;
+    width: 90%;
     display: flex;
     flex: 1;
+}
+
+.option-list .status-amount {
+    font-weight: 700;
+
 }
 
 .option-list ul li:hover {
@@ -38,13 +46,19 @@
     cursor: pointer;
 }
 
+.option-selected {
+    background-color: #d3e3fd;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    cursor: pointer;
+}
+
 .option-list ul li span {
-flex: 4;
+    /* flex: 4; */
 }
 
 .option-list ul li i {
     padding: 5px;
-    flex: 1;
 }
 
 .btn-mail-compose {
