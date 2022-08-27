@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 62px);
+    height: calc(100vh - 112px);
     background-image: url('../../img/home.jpg');
     background-image: 110%;
     color: #fff;
