@@ -5,8 +5,21 @@ export class TodoList extends React.Component {
         todos: []
     }
 
+    componentDidMount() {
+        const { note } = this.props
+
+        if (note) {
+            this.setState(note.info, this.setLabel)
+        }
+    }
+
     setLabel = (ev) => {
-        const { value } = ev.target
+        const { note } = this.props
+        let value
+
+        if (note) value = note.info.label
+        else value = ev.target.value
+
         this.setState({ label: value },
             () => this.props.setNoteTodoInfo({ label: this.state.label, todos: this.state.todos })
         )
@@ -60,18 +73,18 @@ export class TodoList extends React.Component {
         // console.log('this.state:', this.state);
 
         return <section className="todo-list">
-            <input id="todo-list-title" type="text" placeholder="Title" onChange={this.setLabel} />
+            <input id="todo-list-title" type="text" placeholder="Title" onChange={this.setLabel} value={this.state.label} />
             <br></br>
             <ul>
                 {this.state.todos.map((todo, idx) => {
                     return <li key={idx}>
                         <input type="checkbox" onChange={(ev) => this.setTodoDone(ev, idx)} checked={todo.doneAt !== null} />
                         <input type="text" placeholder="Todo..." value={todo.txt} onChange={(ev) => this.setTodos(ev, idx)} />
-                        <button id="todo-list-remove-btn" onClick={() => this.removeTodo(idx)}><i class="fa-solid fa-xmark"></i></button>
+                        <button id="todo-list-remove-btn" onClick={() => this.removeTodo(idx)}><i className="fa-solid fa-xmark"></i></button>
                     </li>
                 })}
             </ul>
-            <button id="todo-list-add-btn" onClick={this.addTodo}><i class="fa-solid fa-plus"></i></button>
+            <button id="todo-list-add-btn" onClick={this.addTodo}><i className="fa-solid fa-plus"></i></button>
         </section >
     }
 

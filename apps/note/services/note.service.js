@@ -5,6 +5,7 @@ export const noteService = {
     query,
     getRemovedNotes,
     getNoteById,
+    // saveNote,
     updateNote,
     addNote,
     removeNote
@@ -19,22 +20,7 @@ let gRemovedNotes = _loadFromStorage(REMOVED_KEY) || []
 
 function query() {
     // gNotes = _loadFromStorage(NOTES_KEY) || _getNotes()
-    // save - do I need it ???
     _saveToStorage(NOTES_KEY, gNotes)
-
-    // let notes = _loadFromStorage(STORAGE_KEY) || gNotes
-    // _saveToStorage(notes)
-
-    // if (filterBy) {
-    //     let { title, minPrice, maxPrice } = filterBy
-    //     if (!minPrice) minPrice = 0
-    //     if (!maxPrice) maxPrice = 200
-    //     books = books.filter(book => (
-    //         book.title.includes(title) &&
-    //         book.listPrice.amount >= minPrice &&
-    //         book.listPrice.amount <= maxPrice
-    //     ))
-    // }
 
     return Promise.resolve(gNotes)
 }
@@ -48,6 +34,11 @@ function getNoteById(noteId) {
     const note = gNotes.find(note => noteId === note.id)
     return Promise.resolve(note)
 }
+
+// function saveNote(note) {
+//     if(note.id) return updateNote(note)
+//     else return addNote(note)
+// }
 
 function updateNote(updatedNote) {
     gNotes = gNotes.map(note => note.id === updatedNote.id ? updatedNote : note)

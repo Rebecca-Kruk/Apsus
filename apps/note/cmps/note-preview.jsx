@@ -41,6 +41,10 @@ export class NotePreview extends React.Component {
         this.setState({ paletteIsHidden: true })
     }
 
+    closeEditModal = () => {
+        this.setState({ isOnEdit: false })
+    }
+
     render() {
         const { note, isOnEdit, paletteIsHidden } = this.state
         // if (note.info.title) const seperatedText = note.info.title.split('\n')
@@ -74,7 +78,7 @@ export class NotePreview extends React.Component {
 
                 {isOnEdit &&
                     <div className="note-edit">
-                        <NoteEdit note={note} />
+                        <NoteEdit note={note} closeEditModal={this.closeEditModal} />
                     </div>
                 }
 
