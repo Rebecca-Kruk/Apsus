@@ -12,7 +12,7 @@ export class MailList extends React.Component {
             <ul>
                 {
                     this.props.emails.map(email =>
-                        <li key={email.id}>
+                        <li key={email.id} className={`${email.isRead && "not-read"}`}>
                             <EmailPreview email={email}
                                 logggedinUser={this.state.logggedinUser}
                                 filterBy={this.props.filterBy}

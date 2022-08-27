@@ -3,6 +3,7 @@ import { About } from "./views/about.jsx"
 import { Home } from "./views/home.jsx"
 import { MailApp } from "./apps/mail/views/mail-app.jsx"
 import { NoteApp } from "./apps/note/views/note-app.jsx"
+import { AppFooter } from "./cmps/app-footer.jsx"
 
 const Router = ReactRouterDOM.HashRouter
 const { Route, Switch } = ReactRouterDOM
@@ -19,6 +20,7 @@ export function App() {
                 <Route path="/about" component={About} />
                 <Route path="/" component={Home} />
             </Switch>
+            <AppFooter/>
         </section>
     </Router>
 }

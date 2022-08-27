@@ -1,12 +1,25 @@
 header {
-    background: lightcyan;
-    border-bottom: 2px solid white;
+    background: rgb(143, 37, 192);
+    box-shadow: 0 4px 2px -2px gray;
 }
 
 .app-header {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    padding: 20px 0;
+    padding: 0 8px;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.app-header img {
+    width: 60px;
+    filter: invert(1);
+}
+
+.app-header .logo-container {
+    display: flex;
+    align-items: center;
 }
 
 nav a {
@@ -18,7 +31,11 @@ nav a:active {
 }
 
 nav a.active {
-    color: darkblue;
+    color: #000;
     font-weight: bold;
     text-decoration: overline;
+}
+
+nav a:hover {
+    color: #000;
 }

@@ -1,9 +1,8 @@
 .mail-preview {
-    background-color: #f8f9fa;
+    /* background-color: #f8f9fa; */
 }
 
 .mail-preview-container {
-    background-color: #f2f6fc;
     display: flex;
     flex: 1;
     align-self: center;
