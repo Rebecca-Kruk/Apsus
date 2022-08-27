@@ -43,6 +43,10 @@ export class MailApp extends React.Component {
         }
     }
 
+    onStaredEmail = (emailId) => {
+        emailService.setIsStared(emailId).then(this.loadEmails())
+    }
+
     onReadEmail = (emailId) => {
         emailService.setAsRead(emailId).then(this.loadEmails())
     }
@@ -71,7 +75,7 @@ export class MailApp extends React.Component {
         const { onRemoveEmail, onAddEmail,
             onSetFilter, onOpenCompose,
             onCloseCompose, onReadEmail,
-            onNotReadEmail} = this
+            onNotReadEmail, onStaredEmail} = this
 
         return <div className="mail-app-container">
             <MailHeaderContainer />
@@ -93,6 +97,7 @@ export class MailApp extends React.Component {
                     onAddEmail={onAddEmail}
                     onReadEmail={onReadEmail}
                     onNotReadEmail={onNotReadEmail}
+                    onStaredEmail={onStaredEmail}
                 />
             </main>
         </div>

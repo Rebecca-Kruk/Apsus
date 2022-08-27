@@ -1,3 +1,37 @@
-body{
-    /* background-color: antiquewhite; */
+
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 62px);
+    background-image: url('/assets/img/home.jpg');
+    background-image: 110%;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 200;
+}
+
+.home .app-list {
+    display: flex;
+    justify-content: center;
+}
+
+.home a {
+    display: block;
+    border: 2px solid #fff;
+    background-color: transparent;
+    color: #fff;
+    border-radius: 3px;
+    padding: 16px 0;
+    width: 120px;
+    margin-right: 6px;
+}
+
+.home p {
+    padding: 0 200px;
 }

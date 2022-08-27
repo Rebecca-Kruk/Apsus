@@ -22,17 +22,17 @@ export class MailFilter extends React.Component {
     }
 
     render() {
-        const setStatus = emailService.getStatusList()
-        const { onAddEmail, isCompose, onOpenCompose, onCloseCompose } = this.props
+        const options = emailService.getStatusList()
+        const { onAddEmail, isCompose, onOpenCompose, onCloseCompose, emails } = this.props
         const { onSetStatus } = this
-
         return <section className="mail-container">
             <MailOptions onAddEmail={onAddEmail}
-                setStatus={setStatus}
+                options={options}
                 onSetStatus={onSetStatus}
                 isCompose={isCompose}
                 onOpenCompose={onOpenCompose}
                 onCloseCompose={onCloseCompose}
+                emails={emails}
             />
         </section>
     }

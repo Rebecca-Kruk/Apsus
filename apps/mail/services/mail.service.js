@@ -15,14 +15,40 @@ export const emailService = {
     removefromDraft,
     setAsRead,
     setIsRead,
-    gerReadEmails
+    getNotReadInboxEmails,
+    getNotReadBinEmails,
+    getNotReadStaredEmails,
+    setIsStared
 }
 
 
-function gerReadEmails(){
+function getNotReadInboxEmails() {
     let emails = storageService.loadFromStorage(KEY) || gMails
-    emails = emails.filter(email => !email.isRead)
-    console.log('emails', emails.length)
+    emails = emails.filter(email => {
+        return email.isRead === false &&
+            email.to === "tanya@appsus.com" &&
+            !email.isRemoved
+    })
+    return emails.length
+}
+
+function getNotReadBinEmails() {
+    let emails = storageService.loadFromStorage(KEY) || gMails
+    emails = emails.filter(email => {
+        return email.isRead === false &&
+            email.isRemoved
+    })
+    return emails.length
+}
+
+
+function getNotReadStaredEmails() {
+    let emails = storageService.loadFromStorage(KEY) || gMails
+    emails = emails.filter(email => {
+        return email.isRead === false &&
+            email.isStared && !email.isRemoved
+    })
+    return emails.length
 }
 
 const KEY = 'emailsDB'
@@ -34,7 +60,7 @@ function query(filterBy) {
         emails = emails.filter(email => (
             getByStatus(status, email)
         ))
-        emails = (status === 'Sent' || status ==='Bin') ? emails : emails.reverse()
+        emails = (status === 'Sent' || status === 'Bin' || status === 'Stared' ) ? emails : emails.reverse()
     }
     return Promise.resolve(emails)
 }
@@ -46,6 +72,8 @@ function getByStatus(status, email) {
             return email.to.includes(loggedinUser.email) && !email.isRemoved
         case 'Sent':
             return !email.to.includes(loggedinUser.email) && !email.isDraft && !email.isRemoved
+        case 'Stared':
+            return email.isStared && !email.isRemoved && !email.isDraft
         case 'Draft':
             return email.isDraft && !email.isRemoved
         case 'Bin':
@@ -60,6 +88,8 @@ function getUserName(filterBy, email) {
             return email.from.substring(0, email.from.indexOf('@'))
         case 'Sent':
             return `To: ${email.to.substring(0, email.to.indexOf('@')) || email.to}`
+        case 'Stared':
+            return email.from.substring(0, email.from.indexOf('@'))
         case 'Draft':
             return 'Draft'
         case 'Bin':
@@ -136,6 +166,15 @@ function setIsRead(emailId) {
     return Promise.resolve()
 }
 
+
+function setIsStared(emailId){
+    let emails = storageService.loadFromStorage(KEY) || gMails
+    let email = emails.find(email => email.id === emailId)
+    email.isStared = !email.isStared
+    storageService.saveToStorage(KEY, emails)
+    return Promise.resolve()
+}
+
 function getById(emailId) {
     if (!emailId) return Promise.resolve(null)
     const emails = storageService.loadFromStorage(KEY) || gMails
@@ -154,6 +193,7 @@ function _createEmail({ subject, body, to, isDraft }) {
         isRead: false,
         isRemoved: false,
         isDraft,
+        isStared: false,
     }
 }
 
@@ -174,7 +214,7 @@ const criteria = {
     // lables: [] // has any of the labels
 }
 
-const statusOpt = ['Inbox', 'Sent', 'Draft', 'Bin']
+const statusOpt = ['Inbox','Stared', 'Sent', 'Draft', 'Bin']
 
 function getStatusList() {
     return statusOpt
@@ -203,7 +243,7 @@ let gMails = [
         isRead: true,
         isRemoved: false,
         isDraft: false,
-
+        isStared: false,
     },
     {
         id: "hSScj0",
@@ -215,7 +255,7 @@ let gMails = [
         isRead: false,
         isRemoved: false,
         isDraft: false,
-
+        isStared: false,
     },
     {
         id: "4bY8J7",
@@ -227,7 +267,7 @@ let gMails = [
         isRead: false,
         isRemoved: false,
         isDraft: false,
-
+        isStared: false,
     },
     {
         id: "9ZjaJL",
@@ -239,6 +279,7 @@ let gMails = [
         isRead: false,
         isRemoved: true,
         isDraft: false,
+        isStared: false,
     },
     {
         id: "PyAQm2",
@@ -250,7 +291,7 @@ let gMails = [
         isRead: false,
         isRemoved: false,
         isDraft: false,
-
+        isStared: false,
     },
     {
         id: "ljJVux",
@@ -262,7 +303,7 @@ let gMails = [
         isRead: false,
         isRemoved: false,
         isDraft: false,
-
+        isStared: false,
     },
     {
         id: "MDTpTW",
@@ -274,7 +315,7 @@ let gMails = [
         isRead: false,
         isRemoved: true,
         isDraft: false,
-
+        isStared: false,
     },
     {
         id: "PlVIfw",
@@ -286,7 +327,7 @@ let gMails = [
         isRead: false,
         isRemoved: false,
         isDraft: false,
-
+        isStared: false,
     },
     {
         id: "y4wO8a",
@@ -298,7 +339,7 @@ let gMails = [
         isRead: false,
         isRemoved: false,
         isDraft: false,
-
+        isStared: false,
     },
     {
         id: "miKCfj",
@@ -310,7 +351,7 @@ let gMails = [
         isRead: false,
         isRemoved: true,
         isDraft: false,
-
+        isStared: false,
     },
     {
         id: "6HjBty",
@@ -322,7 +363,7 @@ let gMails = [
         isRead: false,
         isRemoved: false,
         isDraft: false,
-
+        isStared: true,
     },
     {
         id: "3oO87f",
@@ -334,7 +375,7 @@ let gMails = [
         isRead: false,
         isRemoved: true,
         isDraft: false,
-
+        isStared: true,
     },
     {
         id: "9WteZx",
@@ -346,7 +387,7 @@ let gMails = [
         isRead: false,
         isRemoved: false,
         isDraft: false,
-
+        isStared: false,
     },
     {
         id: "SJawO4",
@@ -358,7 +399,7 @@ let gMails = [
         isRead: false,
         isRemoved: false,
         isDraft: false,
-
+        isStared: true,
     },
     {
         id: "vgwCMR",
@@ -370,7 +411,7 @@ let gMails = [
         isRead: false,
         isRemoved: false,
         isDraft: false,
-
+        isStared: false,
     },
     {
         id: "EuXIWO",
@@ -382,7 +423,7 @@ let gMails = [
         isRead: false,
         isRemoved: false,
         isDraft: false,
-
+        isStared: false,
     },
     {
         id: "r84fjt",
@@ -394,7 +435,7 @@ let gMails = [
         isRead: false,
         isRemoved: false,
         isDraft: false,
-
+        isStared: false,
     },
     {
         id: "DXMTLC",
@@ -406,7 +447,7 @@ let gMails = [
         isRead: false,
         isRemoved: false,
         isDraft: false,
-
+        isStared: false,
     },
     {
         id: "9WBnvk",
@@ -418,7 +459,7 @@ let gMails = [
         isRead: false,
         isRemoved: false,
         isDraft: false,
-
+        isStared: false,
     },
     {
         id: "lhlVC4",
@@ -430,7 +471,7 @@ let gMails = [
         isRead: false,
         isRemoved: false,
         isDraft: false,
-
+        isStared: false,
     },
     {
         id: "O9xiK5",
@@ -442,7 +483,7 @@ let gMails = [
         isRead: false,
         isRemoved: false,
         isDraft: false,
-
+        isStared: false,
     },
     {
         id: "e101",
@@ -455,7 +496,7 @@ let gMails = [
         isRead: false,
         isRemoved: false,
         isDraft: false,
-
+        isStared: false,
     },
     {
         id: "e102",
@@ -468,7 +509,7 @@ let gMails = [
         isRead: false,
         isRemoved: false,
         isDraft: false,
-
+        isStared: false,
     },
     {
         id: "e103",
@@ -481,5 +522,6 @@ let gMails = [
         isRead: false,
         isRemoved: false,
         isDraft: false,
+        isStared: false,
     }
 ]
