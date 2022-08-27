@@ -5,6 +5,7 @@
 .note-app {
     background-color: white;
     color: #292929;
+    min-height: calc(100vh - 110px);
 }
 
 .note-app .main-screen {

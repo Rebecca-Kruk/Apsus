@@ -31,16 +31,39 @@ export class NoteList extends React.Component {
         this.setState(prevState => ({ notes: [newNote, ...prevState.notes] }))
     }
 
+    updateNote = (noteId, info) => {
+
+        // console.log('mapppp:', this.state.notes.map(note => {
+        //     if (noteId === note.id) {
+
+        //         console.log('note------:', { id: note.id, type: note.type, info });
+        //         return { id: note.id, type: note.type, isPinned: note.isPinned, info }
+        //     }
+        //     return note
+        // }));
+
+        this.setState({
+            notes: this.state.notes.map(note => {
+                if (noteId === note.id) {
+
+                    console.log('note------:', { id: note.id, type: note.type, info });
+                    return { id: note.id, type: note.type, isPinned: note.isPinned, info }
+                }
+                return note
+            })
+        }, console.log('this.state.notes:', this.state.notes))
+    }
+
     // setNoteType = (type) => {
     //     this.setState({ type })
     // }
 
     render() {
-        // console.log('this.state.notes:', this.state.notes);
+        console.log('this.state.notes:', this.state.notes);
 
         return <section className="note-list-container">
             <div className="note-add">
-                <NoteEdit addNote={this.addNote} type={this.state.type}  />
+                <NoteEdit addNote={this.addNote} type={this.state.type} />
                 {/* <div className="options-buttons">
                     <button title="New text note" onClick={() => this.setNoteType('note-txt')}><i className="fa-solid fa-pencil"></i></button>
                     <button id="img-btn" title="New note with image" onClick={() => this.setNoteType('note-img')}>
@@ -52,7 +75,7 @@ export class NoteList extends React.Component {
             </div>
             <div className="note-list">
                 {this.state.notes.map(note => {
-                    return <NotePreview key={note.id} note={note} removeNote={this.removeNote} />
+                    return <NotePreview key={note.id} note={note} removeNote={this.removeNote} updateNote={this.updateNote} />
                 })}
             </div>
         </section>

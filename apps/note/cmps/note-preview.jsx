@@ -78,7 +78,7 @@ export class NotePreview extends React.Component {
 
                 {isOnEdit &&
                     <div className="note-edit">
-                        <NoteEdit note={note} closeEditModal={this.closeEditModal} />
+                        <NoteEdit note={note} closeEditModal={this.closeEditModal} updateNote={this.props.updateNote}/>
                     </div>
                 }
 

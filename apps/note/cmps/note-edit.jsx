@@ -71,31 +71,35 @@ export class NoteEdit extends React.Component {
         //     .then(() => {
         //         this.props.history.push('/car')
         //     })
-        const { id, isPinned } = this.props.note
-        console.log('id, isPinned:', id, isPinned);
+        // console.log('id, isPinned:', id, isPinned);
 
         if (this.props.note) {
-            noteService.updateNote({ id, type, isPinned, info})
+            const { id, isPinned } = this.props.note
+            console.log('info:', info);
+            console.log('this.props.note:', this.props.note);
+            noteService.updateNote({ id, type, isPinned, info })
+                .then(() => this.props.updateNote(id, info))
+
+        } else {
+
+            if (type === 'note-todos') {
+                this.setState(prevState => ({
+                    info: {
+                        label: prevState.info.label,
+                        todos: prevState.info.todos.filter(todo => todo.txt !== '')
+                    }
+                }), () => {
+                    noteService.addNote(type, info, classBgColor)
+                        .then(newNote => { this.props.addNote(newNote) })
+                    this.setState({ info: {} })
+                })
+                return
+            }
+
+            noteService.addNote(type, info, classBgColor).then(newNote => {
+                this.props.addNote(newNote)
+            })
         }
-
-
-        // if (type === 'note-todos') {
-        //     this.setState(prevState => ({
-        //         info: {
-        //             label: prevState.info.label,
-        //             todos: prevState.info.todos.filter(todo => todo.txt !== '')
-        //         }
-        //     }), () => {
-        //         noteService.addNote(type, info, classBgColor)
-        //             .then(newNote => { this.props.addNote(newNote) })
-        //         this.setState({ info: {} })
-        //     })
-        //     return
-        // }
-
-        // noteService.addNote(type, info, classBgColor).then(newNote => {
-        //     this.props.addNote(newNote)
-        // })
 
         this.setState({ info: {} })
 
