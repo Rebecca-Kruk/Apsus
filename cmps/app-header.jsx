@@ -1,10 +1,10 @@
 const { Link, NavLink, withRouter } = ReactRouterDOM
-export function AppHeader() {
 
+export function AppHeader() {
     return <header className="app-header">
         <Link to="/">
             <div className="logo-container">
-            <img src="../assets/img/logo.png" alt="" />
+            <img src='assets/img/logo.png' alt="" />
             <h3>APPSUS</h3>
             </div>
         </Link>
