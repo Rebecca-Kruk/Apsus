@@ -8,18 +8,20 @@ export class MailList extends React.Component {
     }
 
     render() {
-        const {  logggedinUser } = this.state
-        
-
         return <section className="mail-list">
             <div className="mail-list-header">mail-list-header</div>
             <ul>
                 {
                     this.props.emails.map(email =>
                         <li key={email.id}>
-                            <EmailPreview email={email} 
-                            logggedinUser={logggedinUser} 
-                            onRemoveEmail={this.props.onRemoveEmail}/>
+                            <EmailPreview email={email}
+                                logggedinUser={this.state.logggedinUser}
+                                filterBy={this.props.filterBy}
+                                onOpenCompose={this.props.onOpenCompose}
+                                onCloseCompose={this.props.onCloseCompose}
+                                isCompose={this.props.isCompose}
+                                onAddEmail={this.props.onAddEmail}
+                                onRemoveEmail={this.props.onRemoveEmail} />
                         </li>
                     )
                 }

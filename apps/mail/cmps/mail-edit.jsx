@@ -8,8 +8,17 @@ export class MailEdit extends React.Component {
             to: '',
             subject: '',
             body: '',
+            isDraft: false
         }
     }
+
+
+    componentDidMount() {
+        if (this.props.email) {
+            this.setState({ email: this.props.email })
+        }
+    }
+
 
     clearState = () => {
         this.setState({
@@ -21,15 +30,16 @@ export class MailEdit extends React.Component {
         })
     }
 
-    onAdd = (e) => {
-        e.preventDefault()
-        emailService.add(this.state.email).then((email) => {
+    onAdd = (ev) => {
+        ev.preventDefault()
+        const { email } = this.state
+        email.isDraft = false
+        this.setState({ email: { ...email, isDraft: true } })
+        emailService.save(this.state.email).then((email) => {
             this.setState({ email })
             this.props.onAddEmail(this.state.email)
             this.clearState()
-            this.closeCompose()
-
-
+            this.props.onCloseCompose(false)
         })
     }
 
@@ -44,14 +54,24 @@ export class MailEdit extends React.Component {
         }))
     }
 
-    closeCompose = () => {
-        this.clearState()
-        this.props.onCloseCompose(false)
+    closeCompose = (ev) => {
+        ev.preventDefault()
+        const { email } = this.state
+        email.isDraft = true
+        this.setState({ email: { ...email, isDraft: true } })
+        emailService.save(this.state.email).then((email) => {
+            this.setState({ email })
+            if(this.props.status !== 'Draft'){
+                this.clearState()
+            }
+            this.props.onCloseCompose(false)
+        })
     }
 
     render() {
         const { to, subject, body } = this.state.email
         const { handleChange, onAdd, closeCompose } = this
+
 
         return <section className={`mail-edit ${this.props.isCompose && 'compose-open'}`}>
             <div className="mail-edit-header">

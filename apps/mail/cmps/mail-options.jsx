@@ -1,38 +1,34 @@
 import { MailEdit } from '../cmps/mail-edit.jsx'
+import { MailStatus } from '../cmps/mail-status.jsx'
 
 export class MailOptions extends React.Component {
 
-    state = {
-        isCompose: false
+    onStatus = (status) => {
+        this.props.onSetStatus(status)
     }
-
-    openCompose = () => {
-        this.state.isCompose = true
-        this.setState({ isCompose: true })
-    }
-
 
     render() {
-        const { isCompose } = this.state
+        const { onStatus } = this
+        const { setStatus, onOpenCompose, isCompose, onCloseCompose } = this.props
+
         return <section className="option-list">
-            <button className="btn-mail-compose" onClick={this.openCompose}>
+            <button className="btn-mail-compose" onClick={onOpenCompose}>
                 <i className="fa-solid fa-pencil"></i><span>Compose</span>
             </button>
             {
-               
                 <span><MailEdit onAddEmail={this.props.onAddEmail}
                     isCompose={isCompose}
-                    onCloseCompose={(updatedIsCompose) => {
-                        this.setState({ isCompose: updatedIsCompose })
-                    }} />
+                    onCloseCompose={onCloseCompose}/>
                 </span>
             }
             <ul>
-                <li><i className="fa-solid fa-inbox"></i><span>Inbox</span></li>
-                <li><i className="fa-solid fa-star"></i><span>Starred</span></li>
-                <li><i className="fa-solid fa-paper-plane"></i><span>Sent Mail</span></li>
-                <li><i className="fa-solid fa-file"></i><span>Draft</span></li>
-                <li><i className="fa-solid fa-trash-can"></i><span>Bin</span></li>
+                {setStatus.map(status => {
+                    return <li className="selected"
+                        onClick={() => onStatus(status)} key={status}>
+                        <MailStatus status={status} />
+                        <span>{status}</span>
+                    </li>
+                })}
             </ul>
         </section>
     }
