@@ -1,5 +1,6 @@
 import { MailEdit } from '../cmps/mail-edit.jsx'
 import { MailStatus } from '../cmps/mail-status.jsx'
+import { emailService } from '../services/mail.service.js'
 
 export class MailOptions extends React.Component {
 
@@ -27,6 +28,7 @@ export class MailOptions extends React.Component {
                         onClick={() => onStatus(status)} key={status}>
                         <MailStatus status={status} />
                         <span>{status}</span>
+                        <span>{emailService.gerReadEmails()}</span>
                     </li>
                 })}
             </ul>

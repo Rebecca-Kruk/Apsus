@@ -43,6 +43,14 @@ export class MailApp extends React.Component {
         }
     }
 
+    onReadEmail = (emailId) => {
+        emailService.setAsRead(emailId).then(this.loadEmails())
+    }
+
+    onNotReadEmail = (emailId) => {
+        emailService.setIsRead(emailId).then(this.loadEmails())
+    }
+
     onSetFilter = (filterBy) => {
         this.setState({ filterBy }, this.loadEmails)
     }
@@ -60,7 +68,10 @@ export class MailApp extends React.Component {
 
     render() {
         const { emails, filterBy, isCompose } = this.state
-        const { onRemoveEmail, onAddEmail, onSetFilter, onOpenCompose, onCloseCompose } = this
+        const { onRemoveEmail, onAddEmail,
+            onSetFilter, onOpenCompose,
+            onCloseCompose, onReadEmail,
+            onNotReadEmail} = this
 
         return <div className="mail-app-container">
             <MailHeaderContainer />
@@ -80,7 +91,9 @@ export class MailApp extends React.Component {
                     isCompose={isCompose}
                     onRemoveEmail={onRemoveEmail}
                     onAddEmail={onAddEmail}
-                     />
+                    onReadEmail={onReadEmail}
+                    onNotReadEmail={onNotReadEmail}
+                />
             </main>
         </div>
     }

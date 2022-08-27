@@ -12,7 +12,17 @@ export const emailService = {
     getStatusList,
     getUserName,
     removetoBin,
-    removefromDraft
+    removefromDraft,
+    setAsRead,
+    setIsRead,
+    gerReadEmails
+}
+
+
+function gerReadEmails(){
+    let emails = storageService.loadFromStorage(KEY) || gMails
+    emails = emails.filter(email => !email.isRead)
+    console.log('emails', emails.length)
 }
 
 const KEY = 'emailsDB'
@@ -24,6 +34,7 @@ function query(filterBy) {
         emails = emails.filter(email => (
             getByStatus(status, email)
         ))
+        emails = (status === 'Sent' || status ==='Bin') ? emails : emails.reverse()
     }
     return Promise.resolve(emails)
 }
@@ -58,7 +69,7 @@ function getUserName(filterBy, email) {
 
 
 function save(email) {
-    if(email.id) return _update(email)
+    if (email.id) return _update(email)
     else return _add(email)
 }
 
@@ -79,7 +90,7 @@ function _add(newEmail) {
     emails = [email, ...emails]
     storageService.saveToStorage(KEY, emails)
     return Promise.resolve(email)
-    
+
 }
 
 function removetoBin(emailId) {
@@ -94,16 +105,13 @@ function removetoBin(emailId) {
 function removefromDraft(emailId) {
     console.log('Removed from Draft')
     let emails = storageService.loadFromStorage(KEY) || gMails
-    console.log('emails', emails)
-    console.log('emailId', emailId)
     let email = emails.find(email => email.id === emailId)
-    console.log('email', email)
     email.isDraft = false
     storageService.saveToStorage(KEY, emails)
     return Promise.resolve()
 }
 
-function removefromEmail(emailId){
+function removefromEmail(emailId) {
     console.log('Removed forever')
     let emails = storageService.loadFromStorage(KEY) || gMails
     let emailIdx = emails.findIndex(email => email.id === emailId)
@@ -112,6 +120,21 @@ function removefromEmail(emailId){
     return Promise.resolve()
 }
 
+function setAsRead(emailId) {
+    let emails = storageService.loadFromStorage(KEY) || gMails
+    let email = emails.find(email => email.id === emailId)
+    email.isRead = true
+    storageService.saveToStorage(KEY, emails)
+    return Promise.resolve()
+}
+
+function setIsRead(emailId) {
+    let emails = storageService.loadFromStorage(KEY) || gMails
+    let email = emails.find(email => email.id === emailId)
+    email.isRead = !email.isRead
+    storageService.saveToStorage(KEY, emails)
+    return Promise.resolve()
+}
 
 function getById(emailId) {
     if (!emailId) return Promise.resolve(null)

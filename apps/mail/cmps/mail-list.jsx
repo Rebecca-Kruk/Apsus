@@ -9,7 +9,7 @@ export class MailList extends React.Component {
 
     render() {
         return <section className="mail-list">
-            <div className="mail-list-header">mail-list-header</div>
+            {/* <div className="mail-list-header">mail-list-header</div> */}
             <ul>
                 {
                     this.props.emails.map(email =>
@@ -21,7 +21,11 @@ export class MailList extends React.Component {
                                 onCloseCompose={this.props.onCloseCompose}
                                 isCompose={this.props.isCompose}
                                 onAddEmail={this.props.onAddEmail}
-                                onRemoveEmail={this.props.onRemoveEmail} />
+                                onRemoveEmail={this.props.onRemoveEmail}
+                                onReadEmail={this.props.onReadEmail}
+                                onNotReadEmail={this.props.onNotReadEmail}
+
+                            />
                         </li>
                     )
                 }

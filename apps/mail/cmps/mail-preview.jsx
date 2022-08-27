@@ -10,11 +10,16 @@ export class EmailPreview extends React.Component {
         isSelected: false,
     }
 
-    onSelect = (ev) => {
-        ev.preventDefault()
+    onSelect = (ev, emailId) => {
         ev.stopPropagation()
         this.setState({ isSelected: !this.state.isSelected })
         const { status } = this.props.filterBy
+        if (status === 'Inbox' || 'Bin') {
+            const { email } = this.state
+            email.isRead = true
+            this.setState({ email: { ...email, isRead: true } })
+            this.props.onReadEmail(emailId)
+        }
         if (status === 'Draft') {
             this.setState({ isSelected: true })
             this.props.onOpenCompose()
@@ -30,20 +35,36 @@ export class EmailPreview extends React.Component {
         this.props.onCloseCompose(false)
     }
 
+    setNotReadEmail = (ev, emailId) => {
+        ev.stopPropagation()
+        const { email } = this.state
+        email.isRead = false
+        this.setState({ email: { ...email, isRead: false } })
+        this.props.onNotReadEmail(emailId)
+    }
+
     render() {
-        const { onSelect, onRemove } = this
+        const { onSelect, onRemove, setNotReadEmail } = this
         const { isSelected } = this.state
         const { email, filterBy } = this.props
         const { status } = filterBy
+        const envelope = email.isRead ? 'envelope-open' : 'envelope'
 
         return <article className="mail-preview">
-            <div className="mail-preview-container" onClick={(ev) => onSelect(ev)}>
+            <div className={`mail-preview-container ${!email.isRead && (status !== 'Sent' && status !== 'Draft') && 'not-read'}`} onClick={(ev) => onSelect(ev, email.id)}>
                 <span className="fullname">
                     {emailService.getUserName(filterBy, email)}
                 </span>
                 <span className="subject">{email.subject}</span>
                 <span className="sentAt">{utilService.createdAt(email.sentAt)}</span>
-                <button className="btn-remove" onClick={(ev) => onRemove(ev, email.id)}>
+                {(status !== 'Sent' && status !== 'Draft') &&
+                    <button className="btn-preview"
+                        onClick={(ev) => setNotReadEmail(ev, email.id)}>
+                        <i className={`fa-solid fa-${envelope}`}></i>
+                    </button>
+                }
+                <button className="btn-preview"
+                    onClick={(ev) => onRemove(ev, email.id)}>
                     <i className="fa-solid fa-trash-can"></i>
                 </button>
             </div>
@@ -61,3 +82,4 @@ export class EmailPreview extends React.Component {
         </article>
     }
 }
+
