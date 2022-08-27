@@ -34,7 +34,7 @@ export class MailEdit extends React.Component {
         ev.preventDefault()
         const { email } = this.state
         email.isDraft = false
-        this.setState({ email: { ...email, isDraft: true } })
+        this.setState({ email: { ...email, isDraft: false } })
         emailService.save(this.state.email).then((email) => {
             this.setState({ email })
             this.props.onAddEmail(this.state.email)
