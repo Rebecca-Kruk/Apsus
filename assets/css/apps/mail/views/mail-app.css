@@ -3,13 +3,13 @@
 @import '../cmps/mail-list.css';
 @import '../cmps/mail-options.css';
 
-.mail-container{
+.mail-container {
     display: flex;
     border-radius: 20px;
-    height: 100vh;
+    min-height: calc(100vh - 122px);
 }
 
-.mail-header{
+.mail-header {
     padding: 10px;
     background-color: #f6f8fc;
 }

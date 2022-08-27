@@ -21,7 +21,7 @@
     flex: 1;
 }
 
-.btn-remove{
+.btn-preview{
     background-color: #f2f6fc;
     border: none;
     color: rgb(107, 106, 106);
@@ -30,3 +30,6 @@
     height: 25px;
 }
 
+.not-read{
+    font-weight: 600;
+}

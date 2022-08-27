@@ -8,24 +8,38 @@ export class MailEdit extends React.Component {
             to: '',
             subject: '',
             body: '',
+            isDraft: false
         }
     }
 
+
     componentDidMount() {
-        console.log('Mail Alive..');
-        document.addEventListener("click", () => this.closeCompose)
+        if (this.props.email) {
+            this.setState({ email: this.props.email })
+        }
     }
 
-    componentWillUnmount() {
-        document.removeEventListener("click", () => this.closeCompose)
-        console.log('Mail Destroyed..');
+
+    clearState = () => {
+        this.setState({
+            email: {
+                to: '',
+                subject: '',
+                body: '',
+            }
+        })
     }
 
-    onAdd = () => {
-        emailService.add(this.state.email).then((email) => {
+    onAdd = (ev) => {
+        ev.preventDefault()
+        const { email } = this.state
+        email.isDraft = false
+        this.setState({ email: { ...email, isDraft: true } })
+        emailService.save(this.state.email).then((email) => {
             this.setState({ email })
             this.props.onAddEmail(this.state.email)
-            this.closeCompose()
+            this.clearState()
+            this.props.onCloseCompose(false)
         })
     }
 
@@ -40,21 +54,32 @@ export class MailEdit extends React.Component {
         }))
     }
 
-    closeCompose = () => {
-        this.props.onCloseCompose(false)
+    closeCompose = (ev) => {
+        ev.preventDefault()
+        const { email } = this.state
+        email.isDraft = true
+        this.setState({ email: { ...email, isDraft: true } })
+        emailService.save(this.state.email).then((email) => {
+            this.setState({ email })
+            if(this.props.status !== 'Draft'){
+                this.clearState()
+            }
+            this.props.onCloseCompose(false)
+        })
     }
 
     render() {
         const { to, subject, body } = this.state.email
         const { handleChange, onAdd, closeCompose } = this
 
-        return <section className="mail-edit">
+
+        return <section className={`mail-edit ${this.props.isCompose && 'compose-open'}`}>
             <div className="mail-edit-header">
                 <span>New Message</span>
                 <button onClick={closeCompose}><i className="fa-solid fa-xmark"></i></button>
             </div>
             <div className="mail-edit-body">
-                <form onSubmit={onAdd}>
+                <form className="compose-form" onSubmit={onAdd}>
                     <div className="mail-edit-input-container">
                         <label htmlFor="to">To</label>
                         <input type="text" name="to"

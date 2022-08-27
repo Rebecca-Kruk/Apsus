@@ -1,9 +1,9 @@
 
-export function EmailDetails({ email, logggedinUser }) {
+export function EmailDetails({ email }) {
 
     return <section className="mail-details">
         <div className="mail-details-header">
-            <span>from: {logggedinUser.email}</span>
+            <span>from: {email.from}</span>
             <span>to: {email.to}</span>
         </div>
         <div className="mail-details-body">
