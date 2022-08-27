@@ -4,6 +4,6 @@
     border-radius: 8px;
     width: 720px;
     height: 48px;
-    margin: 8px 0;
-    margin-left: 250px;
+    margin: 8px;
+    padding-left: 50px;
 }

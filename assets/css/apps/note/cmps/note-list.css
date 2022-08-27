@@ -1,4 +1,9 @@
+.note-list-container {
+    margin: 0 10px;
+}
+
 .note-list {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }

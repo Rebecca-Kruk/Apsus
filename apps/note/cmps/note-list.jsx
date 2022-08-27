@@ -1,5 +1,5 @@
 import { noteService } from "../services/note.service.js"
-import { NoteAdd } from "./note-add.jsx"
+import { NoteEdit } from "./note-edit.jsx"
 import { NotePreview } from "./note-preview.jsx"
 
 export class NoteList extends React.Component {
@@ -15,6 +15,8 @@ export class NoteList extends React.Component {
     loadNotes = () => {
         noteService.query().then(notes => {
             this.setState({ notes: [...notes] })
+            // when there is no gNotes change to ->
+            // this.setState({ notes })
         }
         )
     }
@@ -25,18 +27,30 @@ export class NoteList extends React.Component {
     }
 
     updateNotes = (newNote) => {
-        // console.log('this.state.notes:', this.state.notes);
         this.setState(prevState => ({ notes: [newNote, ...prevState.notes] }))
     }
+
+    // setNoteType = (type) => {
+    //     this.setState({ type })
+    // }
 
     render() {
         // console.log('this.state.notes:', this.state.notes);
 
-        return <section className="note-list">
-            <NoteAdd updateNotes={this.updateNotes} />
-            {this.state.notes.map(note => {
-                return <NotePreview key={note.id} note={note} removeNote={this.removeNote} />
-            })}
+        return <section className="note-list-container">
+            <div className="note-add">
+                <NoteEdit updateNotes={this.updateNotes} />
+            </div>
+            <div className="note-list">
+                {this.state.notes.map(note => {
+                    return <NotePreview key={note.id} note={note} removeNote={this.removeNote} />
+                })}
+            </div>
+            {/* <div className="options-buttons">
+                <button onClick={() => this.setNoteType('note-txt')}>text</button>
+                <input type="file" onClick={() => this.setNoteType('note-img')} onChange={this.setNoteInfo} />
+                <button onClick={() => this.setNoteType('note-todos')}>todos</button>
+            </div> */}
         </section>
     }
 }

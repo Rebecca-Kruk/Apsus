@@ -1,0 +1,37 @@
+.todo-list {
+    /* background-color: antiquewhite; */
+}
+
+.todo-list button {
+    color: #292929;
+    cursor: pointer;
+}
+
+.todo-list input[type=text],
+#todo-list-remove-btn,
+#todo-list-add-btn {
+    border: none;
+    background-color: transparent;
+}
+
+.todo-list input[type=text]:focus {
+    outline: none;
+}
+
+.todo-list ul {
+    list-style: none;
+}
+
+#todo-list-title,
+#todo-list-add-btn {
+    margin-left: 40px;
+    font-size: 16px;
+}
+
+#todo-list-title {
+    margin-top: 20px;
+}
+
+#todo-list-add-btn {
+    margin-bottom: 20px;
+}

@@ -13,6 +13,7 @@ export const noteService = {
 const NOTES_KEY = 'notesDB'
 const REMOVED_KEY = 'removedNotesDB'
 
+// change to function get Notes
 let gNotes = _loadFromStorage(NOTES_KEY) || _getNotes()
 let gRemovedNotes = _loadFromStorage(REMOVED_KEY) || []
 
@@ -106,8 +107,7 @@ function _getNotes() {
             type: 'note-img',
             // isPinned: true,
             info: {
-                // url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
-                url: '../../../assets/img/note/test.jpg',
+                url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
                 title: 'Bobi and Me'
             },
             classBgColor: '',
@@ -127,101 +127,11 @@ function _getNotes() {
                 ]
             },
             classBgColor: ''
-        },
-        {
-            id: 'n104',
-            type: 'note-img',
-            // isPinned: true,
-            info: {
-                // url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
-                url: '/assets/img/note/test.jpg',
-                title: 'Bobi and Me'
-            },
-            classBgColor: 'bg-green'
-        },
-        {
-            id: 'n105',
-            type: 'note-img',
-            // isPinned: true,
-            info: {
-                // url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
-                url: './assets/img/note/test.jpg',
-                title: 'Bobi and Me'
-            },
-            classBgColor: ''
-        },
-        {
-            id: 'n106',
-            type: 'note-img',
-            // isPinned: true,
-            info: {
-                // url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
-                url: '../assets/img/note/test.jpg',
-                title: 'Bobi and Me'
-            },
-            classBgColor: ''
-        },
-        {
-            id: 'n107',
-            type: 'note-img',
-            // isPinned: true,
-            info: {
-                // url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
-                url: '././assets/img/note/test.jpg',
-                title: 'Bobi and Me'
-            },
-            classBgColor: ''
-        },
-        {
-            id: 'n108',
-            type: 'note-img',
-            // isPinned: true,
-            info: {
-                // url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
-                url: '../../assets/img/note/test.jpg',
-                title: 'Bobi and Me'
-            },
-            classBgColor: ''
-        },
-        {
-            id: 'n109',
-            type: 'note-img',
-            // isPinned: true,
-            info: {
-                // url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
-                url: 'assets/img/note/test.jpg',
-                title: 'Bobi and Me'
-            },
-            classBgColor: ''
-        },
-        {
-            id: 'n110',
-            type: 'note-img',
-            // isPinned: true,
-            info: {
-                // url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
-                url: '/assets/img/note/test.jpg',
-                title: 'Bobi and Me'
-            },
-            classBgColor: ''
-        },
-        {
-            id: 'n111',
-            type: 'note-img',
-            // isPinned: true,
-            info: {
-                url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
-                // url: '/assets/img/note/test.jpg',
-                title: 'Bobi and Me'
-            },
-            classBgColor: 'bg-brown'
-        },
-
+        }
     ]
 }
 
 function _saveToStorage(STORAGE_KEY, notes) {
-    // console.log('storage gNotes:', gNotes);
     storageService.saveToStorage(STORAGE_KEY, notes)
 }
 
