@@ -95,35 +95,63 @@ function _getNotes() {
     return [
         {
             id: 'n101',
-            type: 'note-txt',
-            isPinned: true,
+            type: 'note-todos',
+            isPinned: false,
             info: {
-                txt: 'Fullstack Me Baby!'
+                label: 'Summer activities🪁',
+                todos: [
+                    { txt: 'Have a Picnic', doneAt: null },
+                    { txt: 'Attend a Parade', doneAt: 187111111 },
+                    { txt: 'Pick Strawberries🍓', doneAt: null },
+                    { txt: 'Attend an Outdoor Concert', doneAt: null }
+                ]
             },
-            classBgColor: 'bg-pink'
+            classBgColor: 'bg-green'
         },
         {
             id: 'n102',
-            type: 'note-img',
-            // isPinned: true,
+            type: 'note-txt',
+            isPinned: false,
             info: {
-                url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
-                title: 'Bobi and Me'
+                txt: '👩🏻‍💻Knowledge is power!'
             },
-            classBgColor: '',
-            style: {
-                backgroundColor: '#29294'
-            }
+            classBgColor: ''
         },
         {
             id: 'n103',
             type: 'note-todos',
-            // isPinned: true,
+            isPinned: false,
+            info: {
+                label: 'Todo list',
+                todos: [
+                    { txt: 'Writing and testing code for new programs', doneAt: 187111111 },
+                    { txt: 'Updating existing programs', doneAt: null },
+                    { txt: 'Identifying and correcting coding errors', doneAt: null },
+                    { txt: 'Rewriting programs for different operating systems', doneAt: 187111111 },
+                    { txt: 'Secure programs against cybersecurity threats', doneAt: null }
+                ]
+            },
+            classBgColor: 'bg-blue'
+        },
+        {
+            id: 'n104',
+            type: 'note-img',
+            isPinned: false,
+            info: {
+                url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
+                title: 'Bobi and Me'
+            },
+            classBgColor: 'bg-yellow'
+        },
+        {
+            id: 'n105',
+            type: 'note-todos',
+            isPinned: false,
             info: {
                 label: 'Get my stuff together',
                 todos: [
                     { txt: 'Driving liscence', doneAt: null },
-                    { txt: 'Coding poewr', doneAt: 187111111 }
+                    { txt: 'Coding power', doneAt: 187111111 }
                 ]
             },
             classBgColor: ''
