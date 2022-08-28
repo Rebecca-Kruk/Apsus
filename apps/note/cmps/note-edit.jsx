@@ -6,7 +6,7 @@ export class NoteEdit extends React.Component {
     state = {
         type: 'note-txt',
         info: {},
-        classBgColor: '',
+        classBgColor: 'bg-white',
         isEditting: false
     }
 
@@ -18,7 +18,7 @@ export class NoteEdit extends React.Component {
             const type = note.type
             const info = note.info
             const classBgColor = note.classBgColor
-            this.setState({ type, info, classBgColor }, console.log('this.state:', this.state))
+            this.setState({ type, info, classBgColor })
         }
     }
 
@@ -29,7 +29,6 @@ export class NoteEdit extends React.Component {
     setNoteInfo = ({ target }) => {
         const { value } = target
         const { type, info } = this.state
-        // const type = this.props.type
 
         if (type === 'note-txt') {
             this.setState({ info: { txt: value } })
@@ -54,31 +53,14 @@ export class NoteEdit extends React.Component {
         this.setState({ info })
     }
 
-    onSaveCar = (ev) => {
-        ev.preventDefault()
-        carService.save(this.state.car)
-            .then(() => {
-                this.props.history.push('/car')
-            })
-    }
-
     saveNote = () => {
         const { type, info, classBgColor } = this.state
-        // const type = this.props.type
-        console.log('this.state:', this.state);
-
-        // carService.save(this.state.car)
-        //     .then(() => {
-        //         this.props.history.push('/car')
-        //     })
-        // console.log('id, isPinned:', id, isPinned);
 
         if (this.props.note) {
             const { id, isPinned } = this.props.note
-            console.log('info:', info);
-            console.log('this.props.note:', this.props.note);
-            noteService.updateNote({ id, type, isPinned, info })
-                .then(() => this.props.updateNote(id, info))
+    
+            noteService.updateNote({ id, type, isPinned, info, classBgColor: this.props.note.classBgColor })
+                .then(() => this.props.updateNote(id, info, this.props.note.classBgColor))
 
         } else {
 
@@ -110,11 +92,9 @@ export class NoteEdit extends React.Component {
 
     render() {
         const { type, info, classBgColor, isEditting } = this.state
-        // const type = this.props.type
-        // console.log('render:', this.state);
-        // console.log('this.state.info:', this.state.info);
 
         return <section>
+
             {(type === 'note-txt' || type === 'note-img') &&
                 <textarea value={info.txt || info.title || ''}
                     placeholder="Take a note..." onChange={this.setNoteInfo}>
@@ -124,6 +104,7 @@ export class NoteEdit extends React.Component {
             {type === 'note-todos' && <TodoList setNoteTodoInfo={this.setNoteTodoInfo} note={this.props.note} />}
 
             <button id="save-btn" onClick={this.saveNote}>Save</button>
+
             <div className="options-buttons" hidden={isEditting}>
                 <button title="New text note" onClick={() => this.setNoteType('note-txt')}><i className="fa-solid fa-pencil"></i></button>
                 <button id="img-btn" title="New note with image">
@@ -132,6 +113,7 @@ export class NoteEdit extends React.Component {
                 </button>
                 <button title="New list" onClick={() => this.setNoteType('note-todos')}><i className="fa-solid fa-list-ul"></i></button>
             </div>
+
         </section>
     }
 }

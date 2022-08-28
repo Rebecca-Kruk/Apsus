@@ -5,8 +5,8 @@ import { NotePreview } from "./note-preview.jsx"
 export class NoteList extends React.Component {
 
     state = {
-        notes: [],
-        type: 'note-txt'
+        notes: []
+        // notes: this.props.notes
     }
 
     componentDidMount() {
@@ -14,12 +14,11 @@ export class NoteList extends React.Component {
     }
 
     loadNotes = () => {
-        noteService.query().then(notes => {
+        noteService.query().then(notes =>
             this.setState({ notes: [...notes] })
-            // when there is no gNotes change to ->
-            // this.setState({ notes })
-        }
         )
+        // when there is no gNotes change to ->
+        // this.setState({ notes })
     }
 
     removeNote = (noteId) => {
@@ -31,53 +30,33 @@ export class NoteList extends React.Component {
         this.setState(prevState => ({ notes: [newNote, ...prevState.notes] }))
     }
 
-    updateNote = (noteId, info) => {
+    updateNote = (noteId, info, classBgColor) => {
 
-        // console.log('mapppp:', this.state.notes.map(note => {
-        //     if (noteId === note.id) {
+        this.setState(prevState => ({
+            notes: prevState.notes.map(note => {
 
-        //         console.log('note------:', { id: note.id, type: note.type, info });
-        //         return { id: note.id, type: note.type, isPinned: note.isPinned, info }
-        //     }
-        //     return note
-        // }));
-
-        this.setState({
-            notes: this.state.notes.map(note => {
                 if (noteId === note.id) {
-
-                    console.log('note------:', { id: note.id, type: note.type, info });
-                    return { id: note.id, type: note.type, isPinned: note.isPinned, info }
+                    return { id: note.id, type: note.type, isPinned: note.isPinned, info, classBgColor }
                 }
                 return note
             })
-        }, console.log('this.state.notes:', this.state.notes))
+        }))
     }
 
-    // setNoteType = (type) => {
-    //     this.setState({ type })
-    // }
-
     render() {
-        console.log('this.state.notes:', this.state.notes);
 
         return <section className="note-list-container">
+
             <div className="note-add">
-                <NoteEdit addNote={this.addNote} type={this.state.type} />
-                {/* <div className="options-buttons">
-                    <button title="New text note" onClick={() => this.setNoteType('note-txt')}><i className="fa-solid fa-pencil"></i></button>
-                    <button id="img-btn" title="New note with image" onClick={() => this.setNoteType('note-img')}>
-                        <i className="fa-solid fa-image"></i>
-                        <input type="file" onChange={this.setNoteInfo} />
-                    </button>
-                    <button title="New list" onClick={() => this.setNoteType('note-todos')}><i className="fa-solid fa-list-ul"></i></button>
-                </div> */}
+                <NoteEdit addNote={this.addNote} />
             </div>
-            <div className="note-list">
+
+            <div className="note-list" key={Math.random() + Date.now()}>
                 {this.state.notes.map(note => {
                     return <NotePreview key={note.id} note={note} removeNote={this.removeNote} updateNote={this.updateNote} />
                 })}
             </div>
+
         </section>
     }
 }
