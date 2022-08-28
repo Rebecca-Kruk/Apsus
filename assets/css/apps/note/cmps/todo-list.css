@@ -35,8 +35,6 @@
 
 /* Edit todo list */
 
-.note-edit #todo-list-title {}
-
 .note-edit #todo-list-title {
     font-size: 20px;
 }

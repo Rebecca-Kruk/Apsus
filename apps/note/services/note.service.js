@@ -13,12 +13,10 @@ export const noteService = {
 const NOTES_KEY = 'notesDB'
 const REMOVED_KEY = 'removedNotesDB'
 
-// change to function get Notes
 let gNotes = _loadFromStorage(NOTES_KEY) || _getNotes()
 let gRemovedNotes = _loadFromStorage(REMOVED_KEY) || []
 
 function query() {
-    // gNotes = _loadFromStorage(NOTES_KEY) || _getNotes()
     _saveToStorage(NOTES_KEY, gNotes)
 
     return Promise.resolve(gNotes)

@@ -6,7 +6,6 @@ export class NoteList extends React.Component {
 
     state = {
         notes: []
-        // notes: this.props.notes
     }
 
     componentDidMount() {
@@ -17,8 +16,6 @@ export class NoteList extends React.Component {
         noteService.query().then(notes =>
             this.setState({ notes: [...notes] })
         )
-        // when there is no gNotes change to ->
-        // this.setState({ notes })
     }
 
     removeNote = (noteId) => {

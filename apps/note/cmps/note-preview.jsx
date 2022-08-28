@@ -31,10 +31,6 @@ export class NotePreview extends React.Component {
         this.setState(prevState => ({ note: { ...prevState.note, classBgColor: className } }),
             () => { noteService.updateNote(this.state.note) }
         )
-
-        // update service and then view(state) ???
-        // noteService.updateNote(updated.note)
-        //     .then(note => this.setState({ note }))
     }
 
     closePaletteColor = () => {
@@ -47,10 +43,6 @@ export class NotePreview extends React.Component {
 
     render() {
         const { note, isOnEdit, paletteIsHidden } = this.state
-        // if (note.info.title) const seperatedText = note.info.title.split('\n')
-
-        // if (note.classBgColor === '') this.setState(note: {classBgColor: })
-
 
         return <section className={`note-preview ${note.classBgColor}`}>
             <button className="pin-note"><i className="fa-solid fa-thumbtack"></i></button>
@@ -58,7 +50,6 @@ export class NotePreview extends React.Component {
             {note.type === 'note-txt' && <p>{note.info.txt}</p>}
             {note.type === 'note-img' &&
                 <div>
-                    {/* {seperatedText.lenght} */}
                     <p>{note.info.title}</p>
                     <img src={note.info.url} />
                 </div>
