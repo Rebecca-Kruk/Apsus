@@ -70,11 +70,12 @@ export class TodoList extends React.Component {
     }
 
     render() {
-        // console.log('this.state:', this.state);
 
         return <section className="todo-list">
+
             <input id="todo-list-title" type="text" placeholder="Title" onChange={this.setLabel} value={this.state.label} />
             <br></br>
+
             <ul>
                 {this.state.todos.map((todo, idx) => {
                     return <li key={idx}>
@@ -84,6 +85,7 @@ export class TodoList extends React.Component {
                     </li>
                 })}
             </ul>
+
             <button id="todo-list-add-btn" onClick={this.addTodo}><i className="fa-solid fa-plus"></i></button>
         </section >
     }

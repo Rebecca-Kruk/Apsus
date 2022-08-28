@@ -5,7 +5,6 @@ export const noteService = {
     query,
     getRemovedNotes,
     getNoteById,
-    // saveNote,
     updateNote,
     addNote,
     removeNote
@@ -14,12 +13,10 @@ export const noteService = {
 const NOTES_KEY = 'notesDB'
 const REMOVED_KEY = 'removedNotesDB'
 
-// change to function get Notes
 let gNotes = _loadFromStorage(NOTES_KEY) || _getNotes()
 let gRemovedNotes = _loadFromStorage(REMOVED_KEY) || []
 
 function query() {
-    // gNotes = _loadFromStorage(NOTES_KEY) || _getNotes()
     _saveToStorage(NOTES_KEY, gNotes)
 
     return Promise.resolve(gNotes)
@@ -34,11 +31,6 @@ function getNoteById(noteId) {
     const note = gNotes.find(note => noteId === note.id)
     return Promise.resolve(note)
 }
-
-// function saveNote(note) {
-//     if(note.id) return updateNote(note)
-//     else return addNote(note)
-// }
 
 function updateNote(updatedNote) {
     gNotes = gNotes.map(note => note.id === updatedNote.id ? updatedNote : note)
@@ -67,7 +59,6 @@ function removeNote(noteId) {
 
     // remove note from array - gNotes
     gNotes = gNotes.filter(note => noteId !== note.id)
-    // console.log('remove gNotes:', gNotes);
     _saveToStorage(NOTES_KEY, gNotes)
 
     return Promise.resolve()
@@ -77,7 +68,6 @@ function _addRemovedNoteToStorage(noteId) {
 
     getNoteById(noteId).then(note => {
         gRemovedNotes.unshift(note)
-        // console.log('gRemovedNotes:', gRemovedNotes);
         _saveToStorage(REMOVED_KEY, gRemovedNotes)
     })
 }
@@ -86,6 +76,16 @@ function _getNotes() {
     return [
         {
             id: 'n101',
+            type: 'note-img',
+            isPinned: false,
+            info: {
+                url: 'https://images.unsplash.com/photo-1465014925804-7b9ede58d0d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80',
+                title: 'My breakfast:'
+            },
+            classBgColor: 'bg-pink'
+        },
+        {
+            id: 'n102',
             type: 'note-todos',
             isPinned: false,
             info: {
@@ -100,16 +100,16 @@ function _getNotes() {
             classBgColor: 'bg-green'
         },
         {
-            id: 'n102',
+            id: 'n103',
             type: 'note-txt',
             isPinned: false,
             info: {
                 txt: '👩🏻‍💻Knowledge is power!'
             },
-            classBgColor: ''
+            classBgColor: 'bg-white'
         },
         {
-            id: 'n103',
+            id: 'n104',
             type: 'note-todos',
             isPinned: false,
             info: {
@@ -125,17 +125,17 @@ function _getNotes() {
             classBgColor: 'bg-blue'
         },
         {
-            id: 'n104',
+            id: 'n105',
             type: 'note-img',
             isPinned: false,
             info: {
-                url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
-                title: 'Bobi and Me'
+                url: 'https://images.unsplash.com/photo-1588943211346-0908a1fb0b01?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80',
+                title: 'Bobi and Me!'
             },
             classBgColor: 'bg-yellow'
         },
         {
-            id: 'n105',
+            id: 'n106',
             type: 'note-todos',
             isPinned: false,
             info: {
@@ -145,8 +145,17 @@ function _getNotes() {
                     { txt: 'Coding power', doneAt: 187111111 }
                 ]
             },
-            classBgColor: ''
-        }
+            classBgColor: 'bg-white'
+        },
+        {
+            id: 'n107',
+            type: 'note-txt',
+            isPinned: false,
+            info: {
+                txt: '“We cannot solve problems with the kind of thinking we employed when we came up with them.” — Albert Einstein'
+            },
+            classBgColor: 'bg-orange'
+        },
     ]
 }
 

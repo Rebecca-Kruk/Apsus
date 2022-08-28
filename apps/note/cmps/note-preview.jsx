@@ -14,7 +14,7 @@ export class NotePreview extends React.Component {
         document.addEventListener('click', this.closePaletteColor)
     }
 
-    // opens NoteDetails Modal
+    // opens NoteEdit Modal
     editNote = () => {
         this.setState({ isOnEdit: true })
     }
@@ -31,10 +31,6 @@ export class NotePreview extends React.Component {
         this.setState(prevState => ({ note: { ...prevState.note, classBgColor: className } }),
             () => { noteService.updateNote(this.state.note) }
         )
-
-        // update service and then view(state) ???
-        // noteService.updateNote(updated.note)
-        //     .then(note => this.setState({ note }))
     }
 
     closePaletteColor = () => {
@@ -47,23 +43,20 @@ export class NotePreview extends React.Component {
 
     render() {
         const { note, isOnEdit, paletteIsHidden } = this.state
-        // if (note.info.title) const seperatedText = note.info.title.split('\n')
-
 
         return <section className={`note-preview ${note.classBgColor}`}>
             <button className="pin-note"><i className="fa-solid fa-thumbtack"></i></button>
 
-            {note.type === 'note-txt' && note.info.txt}
+            {note.type === 'note-txt' && <p>{note.info.txt}</p>}
             {note.type === 'note-img' &&
                 <div>
-                    {/* {seperatedText.lenght} */}
                     <p>{note.info.title}</p>
                     <img src={note.info.url} />
                 </div>
             }
             {note.type === 'note-todos' &&
                 <div>
-                    {note.info.label}
+                    <p>{note.info.label}</p>
                     <ul>
                         {note.info.todos.map((todo, idx) => {
                             return <li key={idx} className={todo.doneAt ? 'done' : ''}>{todo.txt}</li>
@@ -77,8 +70,8 @@ export class NotePreview extends React.Component {
                 <button title="Edit note" onClick={this.editNote}><i className="fa-solid fa-pen-to-square"></i></button>
 
                 {isOnEdit &&
-                    <div className="note-edit">
-                        <NoteEdit note={note} closeEditModal={this.closeEditModal} updateNote={this.props.updateNote}/>
+                    <div className={`note-edit ${note.classBgColor}`}>
+                        <NoteEdit note={note} closeEditModal={this.closeEditModal} updateNote={this.props.updateNote} />
                     </div>
                 }
 
@@ -86,9 +79,9 @@ export class NotePreview extends React.Component {
                     <button title="Background options" onClick={this.openPaletteColor}><i className="fa-solid fa-palette"></i></button>
                     <NoteColorPalette paletteIsHidden={paletteIsHidden} changeNoteColor={this.changeNoteColor} />
                 </div>
+
                 <button title="Delete note" onClick={() => this.props.removeNote(note.id)}><i className="fa-solid fa-trash"></i></button>
             </div>
-
 
         </section>
     }

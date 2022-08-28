@@ -6,7 +6,7 @@
     min-height: 48px;
     margin: 30px auto;
     padding-right: 200px;
-    box-shadow: 6px 7px 8px -5px rgba(0,0,0,0.22);
+    box-shadow: 6px 7px 8px -5px rgba(0, 0, 0, 0.22);
 }
 
 .note-add textarea {
@@ -36,11 +36,15 @@
     border: none;
     background-color: inherit;
     font-size: 15px;
-    color: #292929;
+    color: #6e6e6e;
     cursor: pointer;
 }
 
-#save-btn {
+.note-add .options-buttons>*:hover {
+    color: #292929;
+}
+
+.note-add #save-btn {
     position: absolute;
     top: 15px;
     right: 130px;
@@ -52,12 +56,12 @@
     cursor: pointer;
 }
 
-#save-btn:hover {
+.note-add #save-btn:hover {
     background-color: #f3f3f3;
     border-radius: 8px;
 }
 
-#img-btn {
+.note-add #img-btn {
     position: relative;
 }
 
@@ -71,5 +75,5 @@
 }
 
 .note-add img {
-    width: 200px;
+    width: 110px;
 }

@@ -20,7 +20,7 @@
 }
 
 .note-preview img {
-    width: 100px;
+    width: 150px;
     margin: 5px;
 }
 
@@ -41,12 +41,10 @@
 }
 
 .note-preview button:hover {
-    color: #4d4c4c;
+    color: #29292991;
 }
 
 .note-preview .edit {
-    /* palette hidden with .edit bar */
-    /* display: none; */
     position: absolute;
     bottom: 10px;
     left: 20px;
